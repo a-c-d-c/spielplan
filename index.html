@@ -126,9 +126,6 @@
     line-height: 1;
   }
   .header-club-link { color: inherit; text-decoration: none; }
-  .btn-club-switch { background: none; border: none; color: inherit; font: inherit; letter-spacing: inherit;
-    text-transform: inherit; cursor: pointer; padding: 2px 0; text-decoration: underline dotted; text-underline-offset: 3px; }
-  .btn-club-switch:hover { text-decoration-style: solid; }
 
   /* Vereinsauswahl: eigene Ascheplatz-Optik wie das App-Symbol, unabhängig vom Farbschema */
   #club-picker { display: none; position: fixed; inset: 0; z-index: 1000; overflow-y: auto;
@@ -183,6 +180,7 @@
     user-select: none;
   }
   .btn-season.on { color: #fff; font-weight: 700; border-color: #9095b0; background: rgba(144,149,176,0.10); }
+  .btn-season-club { flex: 0 0 auto; padding: 7px 14px; }
 
   /* ── Next match box ── */
   .next-match-box {
@@ -989,7 +987,6 @@
   <div class="header-title">
     <h1><a class="header-club-link" id="club-link" href="#" target="_blank" rel="noopener" title="Vereinsseite auf liga.nu">Spielplan</a></h1>
   </div>
-  <p id="header-sub"></p>
   <div class="season-row" id="season-row"></div>
 </div>
 
@@ -1853,6 +1850,38 @@ async function initLeagues() {
       console.warn('Mannschaftsliste konnte nicht geladen werden:', e.message);
     }
   }
+  /* Saison-Gedächtnis: liga.nu nimmt eine abgelaufene Saison irgendwann aus der Vereinsübersicht,
+     ihre Gruppenseiten bleiben aber abrufbar. Die App merkt sich daher je Verein die Mannschaften
+     der letzten zwei Saisons — so bleibt die vorige Saison wählbar. */
+  const LS_MEMORY = LS_PREFIX + 'saison-gedaechtnis';
+  let memory = [];
+  try { memory = JSON.parse(localStorage.getItem(LS_MEMORY) || '[]') || []; } catch(e) {}
+  if (ALL_LEAGUES.length) {
+    const fresh = new Set(ALL_LEAGUES.map(l => l.season));
+    ALL_LEAGUES = [...memory.filter(l => !fresh.has(l.season)), ...ALL_LEAGUES];
+    const maxO = Math.max(...ALL_LEAGUES.map(l => seasonOrder(l.season)));
+    try { localStorage.setItem(LS_MEMORY, JSON.stringify(ALL_LEAGUES.filter(l => seasonOrder(l.season) >= maxO - 1))); } catch(e) {}
+  } else {
+    ALL_LEAGUES = memory;   /* liga.nu gerade nicht erreichbar → letzter bekannter Stand */
+  }
+  /* Saisonliste vom eigenen Server (erzeugt mit tools/saisonliste.py): Mannschaften
+     abgelaufener Saisons, die liga.nu nicht mehr in der Vereinsübersicht führt — gilt für
+     alle Nutzer, auch nach Neuinstallation. Ergänzt nur, was noch fehlt. Die Einträge gehen
+     im Format der liga.nu-Vereinsseite durch denselben Parser wie die Live-Daten. */
+  try {
+    const list = await fetch('saisonliste.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null);
+    const have = new Set(ALL_LEAGUES.map(l => l.season + '|' + l.team));
+    Object.values((list && list.saisons) || {}).forEach(byClub => {
+      const entries = (byClub && byClub[CLUB.slug]) || [];
+      const snippet = entries.map(e =>
+        `<a title="Mannschaftsportrait">${esc(e.label)}</a><a href="${esc(e.url)}">${esc(e.liga)}</a>`).join('');
+      parseClubTeams(snippet).forEach(l => {
+        if (have.has(l.season + '|' + l.team)) return;
+        have.add(l.season + '|' + l.team);
+        ALL_LEAGUES.push(l);
+      });
+    });
+  } catch(e) { console.warn('Saisonliste nicht lesbar:', e.message); }
   /* Eingefrorene Saisons vorn anfügen — sie sind älter als alles, was liga.nu noch
      listet. Führt die Vereinsseite eine Saison selbst noch auf, gilt deren Liste. */
   const archived = [];
@@ -1922,23 +1951,26 @@ function setSeasonKey(key) {
   LS_HTML_CACHE = LS_HTML_BASE    + suffix + ':';
 }
 
+/* Eine Zeile: [⇄ Verein] [vorige Saison] [aktuelle Saison]. Gibt es (noch) nur eine
+   Saison, steht sie allein neben dem Vereinsknopf — die zweite kommt automatisch dazu. */
 function buildSeasonButtons() {
   const row = document.getElementById('season-row');
-  const sub = document.getElementById('header-sub');
   if (!row) return;
   row.innerHTML = '';
-  /* Nur eine Saison gemeldet → kein Umschalter nötig, Saison steht in der Kopfzeile */
-  if (SEASONS.length < 2) {
-    setHeaderSub(SEASON_KEY ? seasonLabel(SEASON_KEY) : '');
-    updateHeaderH();
-    return;
-  }
-  setHeaderSub('');
+  const club = document.createElement('button');
+  club.className   = 'btn-season btn-season-club';
+  club.textContent = '⇄ Verein';
+  club.title       = 'Verein wechseln';
+  club.addEventListener('click', showClubPicker);
+  row.appendChild(club);
   /* Immer zeitlich, ältere Saison links — liga.nu ändert seine Reihenfolge sonst je nach Stand */
-  SEASONS.slice().sort((a, b) => seasonOrder(a) - seasonOrder(b)).forEach(key => {
+  const keys = SEASONS.length ? SEASONS.slice().sort((a, b) => seasonOrder(a) - seasonOrder(b))
+                              : (SEASON_KEY ? [SEASON_KEY] : []);
+  keys.forEach(key => {
     const btn = document.createElement('button');
     btn.className   = 'btn-season' + (key === SEASON_KEY ? ' on' : '');
-    btn.textContent = seasonLabel(key);
+    btn.textContent = key;   /* „Winter 26/27" / „Sommer 2026" — kurz genug für drei Knöpfe */
+    btn.title       = seasonLabel(key);
     btn.addEventListener('click', () => switchSeason(key));
     row.appendChild(btn);
   });
@@ -3647,13 +3679,6 @@ function applyMeineFavoriten() {
 document.getElementById('btn-favoriten-close').addEventListener('click', function() { closeFavoriten(true); });
 
 /* ── Vereinsauswahl ────────────────────────────────────────── */
-function setHeaderSub(extra) {
-  const sub = document.getElementById('header-sub');
-  if (!sub) return;
-  sub.innerHTML = '<button class="btn-club-switch" onclick="showClubPicker()">Verein wechseln ⇄</button>'
-    + (extra ? ' · ' + extra : '');
-}
-
 function showClubPicker() {
   const list = document.getElementById('club-picker-list');
   list.innerHTML = '';
@@ -3685,7 +3710,6 @@ function chooseClub(slug) {
 }
 
 (function initClubHeader() {
-  setHeaderSub('');
   if (!CLUB) return;
   const a = document.getElementById('club-link');
   a.textContent = CLUB.name;

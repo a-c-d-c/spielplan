@@ -1,0 +1,1045 @@
+{
+ "saisons": {
+  "Sommer 2026": {
+   "ahaus": [
+    {
+     "label": "Damen 6er 1",
+     "liga": "Damen Münsterlandliga Gr. 001",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=1"
+    },
+    {
+     "label": "Damen 6er 2",
+     "liga": "Damen Bezirksliga Gr. 003",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=3"
+    },
+    {
+     "label": "Damen 30 4er 1",
+     "liga": "Damen 30 4er Bezirksliga Gr. 018",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=18"
+    },
+    {
+     "label": "Herren 6er 3",
+     "liga": "Herren Bezirksliga Gr. 059",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=59"
+    },
+    {
+     "label": "Herren 4er 4",
+     "liga": "Herren 4er Kreisliga Gr. 076 K4",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=76"
+    },
+    {
+     "label": "Herren 4er 5",
+     "liga": "Herren 4er Kreisklasse 2 Gr. 078 K4",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=78"
+    },
+    {
+     "label": "Herren 30 4er 1",
+     "liga": "Herren 30 4er Bezirksliga Gr. 081",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=81"
+    },
+    {
+     "label": "Herren 30 4er 2",
+     "liga": "Herren 30 4er Kreisklasse 2 Gr. 088 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=88"
+    },
+    {
+     "label": "Herren 30 4er 3",
+     "liga": "Herren 30 4er Kreisklasse 3 Gr. 089 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=89"
+    },
+    {
+     "label": "Herren 40 4er 1",
+     "liga": "Herren 40 4er Bezirksklasse Gr. 106",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=106"
+    },
+    {
+     "label": "Herren 40 4er 2",
+     "liga": "Herren 40 4er Kreisklasse 1 Gr. 108 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=108"
+    },
+    {
+     "label": "Herren 50 4er 1",
+     "liga": "Herren 50 4er Bezirksliga Gr. 123",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=123"
+    },
+    {
+     "label": "Herren 55 4er 1",
+     "liga": "Herren 55 4er Bezirksklasse Gr. 140",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=140"
+    },
+    {
+     "label": "Herren 65 4er 1",
+     "liga": "Herren 65 4er Bezirksklasse Gr. 150",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=150"
+    },
+    {
+     "label": "Herren 50 Doppel 1",
+     "liga": "Herren 50 Doppel Bezirksliga Gr. 154",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=154"
+    },
+    {
+     "label": "Hobby Mixed Doppel 1",
+     "liga": "Mixed Gr. 184 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=184"
+    },
+    {
+     "label": "Mixed U12 2er Grüner Ball 1",
+     "liga": "Mixed U12 2er Kreisklasse Grüner Ball Gr. 192",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=192"
+    },
+    {
+     "label": "Gemischt U8 Kleinfeld 2er 1",
+     "liga": "Gemischt U8 2er Kleinfeld Kreisklasse 1 Gr. 200 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=200"
+    },
+    {
+     "label": "Gemischt U10 Midcourt 2er 1",
+     "liga": "Gemischt U10 2er Midcourt Kreisklasse Gr. 213",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=213"
+    },
+    {
+     "label": "Gemischt U10 Großfeld 2er 1",
+     "liga": "Gemischt U10 2er Großfeld Kreisklasse 1 Gr. 217 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=217"
+    },
+    {
+     "label": "Junioren U12 2er 1",
+     "liga": "Junioren U12 2er Kreisliga Gr. 226",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=226"
+    },
+    {
+     "label": "Junioren U15 4er classic 1",
+     "liga": "Junioren U15 classic Kreisklasse 1 Gr. 249 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=249"
+    },
+    {
+     "label": "Junioren U18 2er 1",
+     "liga": "Junioren U18 2er Kreisklasse 1 Gr. 254 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=254"
+    },
+    {
+     "label": "Junioren U18 2er 1",
+     "liga": "Junioren U18 2er Kreisklasse 1 Gr. 255 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=255"
+    },
+    {
+     "label": "Junioren U18 4er classic 1",
+     "liga": "Junioren U18 classic Kreisliga Gr. 263",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=263"
+    },
+    {
+     "label": "Juniorinnen U12 2er Grüner Ball 1",
+     "liga": "Juniorinnen U12 2er Kreisklasse Grüner Ball Gr. 266 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=266"
+    },
+    {
+     "label": "Juniorinnen U12 2er 1",
+     "liga": "Juniorinnen U12 2er Kreisklasse 1 Gr. 272 K4",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=272"
+    },
+    {
+     "label": "Juniorinnen U15 2er 1",
+     "liga": "Juniorinnen U15 2er Kreisklasse 1 Gr. 277 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=277"
+    },
+    {
+     "label": "Juniorinnen U18 2er 1",
+     "liga": "Juniorinnen U18 2er Kreisklasse 1 Gr. 294 K4",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=294"
+    },
+    {
+     "label": "Juniorinnen U18 4er classic 2",
+     "liga": "Juniorinnen U18 classic Kreisliga Gr. 297",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=297"
+    },
+    {
+     "label": "Herren 6er 1",
+     "liga": "Herren Westfalenliga Gr. 022",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=22"
+    },
+    {
+     "label": "Herren 6er 2",
+     "liga": "Herren Verbandsliga Gr. 023",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=23"
+    },
+    {
+     "label": "Gemischte Mannschaften 1",
+     "liga": "Gemischte Mannschaften Verbandsliga Gr. 055",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=55"
+    },
+    {
+     "label": "Juniorinnen U18 4er 1",
+     "liga": "Juniorinnen U18 Westfalenliga Gr. 059",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=59"
+    }
+   ],
+   "gronau": [
+    {
+     "label": "Damen 6er 1",
+     "liga": "Damen Bezirksliga Gr. 002",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=2"
+    },
+    {
+     "label": "Damen 4er 2",
+     "liga": "Damen 4er Kreisliga Gr. 007 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=7"
+    },
+    {
+     "label": "Damen 30 4er 1",
+     "liga": "Damen 30 4er Bezirksliga Gr. 018",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=18"
+    },
+    {
+     "label": "Damen 50 Doppel 1",
+     "liga": "Damen 50 Doppel Bezirksliga Gr. 054",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=54"
+    },
+    {
+     "label": "Herren 6er 1",
+     "liga": "Herren Bezirksklasse Gr. 062",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=62"
+    },
+    {
+     "label": "Herren 4er 2",
+     "liga": "Herren 4er Kreisklasse 2 Gr. 066 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=66"
+    },
+    {
+     "label": "Herren 30 4er 1",
+     "liga": "Herren 30 4er Kreisklasse 1 Gr. 087 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=87"
+    },
+    {
+     "label": "Herren 40 4er 1",
+     "liga": "Herren 40 4er Kreisklasse 2 Gr. 109 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=109"
+    },
+    {
+     "label": "Herren 55 4er 1",
+     "liga": "Herren 55 4er Bezirksklasse Gr. 138",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=138"
+    },
+    {
+     "label": "Mixed U15 2er 1",
+     "liga": "Mixed U15 2er Kreisliga Gr. 194",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=194"
+    },
+    {
+     "label": "Junioren U15 2er 1",
+     "liga": "Junioren U15 2er Kreisklasse 1 Gr. 237 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=237"
+    },
+    {
+     "label": "Damen 50 4er 1",
+     "liga": "Damen 50 Verbandsliga Gr. 012",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=12"
+    },
+    {
+     "label": "Herren 60 6er 1",
+     "liga": "Herren 60 Westfalenliga Gr. 037",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=37"
+    }
+   ],
+   "thc-muenster": [
+    {
+     "label": "Damen 6er 2",
+     "liga": "Damen Münsterlandliga Gr. 001",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=1"
+    },
+    {
+     "label": "Damen 6er 4",
+     "liga": "Damen Bezirksliga Gr. 002",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=2"
+    },
+    {
+     "label": "Damen 6er 3",
+     "liga": "Damen Bezirksliga Gr. 003",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=3"
+    },
+    {
+     "label": "Damen 30 4er 1",
+     "liga": "Damen 30 4er Kreisliga Gr. 024 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=24"
+    },
+    {
+     "label": "Damen 40 4er 1",
+     "liga": "Damen 40 4er Kreisliga Gr. 038 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=38"
+    },
+    {
+     "label": "Damen 40 4er 3",
+     "liga": "Damen 40 4er Kreisklasse 1 Gr. 039 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=39"
+    },
+    {
+     "label": "Damen 40 4er 2",
+     "liga": "Damen 40 4er Kreisliga Gr. 040 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=40"
+    },
+    {
+     "label": "Damen 50 4er 2",
+     "liga": "Damen 50 4er Bezirksliga Gr. 045",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=45"
+    },
+    {
+     "label": "Damen 50 4er 3",
+     "liga": "Damen 50 4er Bezirksliga Gr. 046",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=46"
+    },
+    {
+     "label": "Herren 6er 1",
+     "liga": "Herren Münsterlandliga Gr. 058",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=58"
+    },
+    {
+     "label": "Herren 6er 2",
+     "liga": "Herren Bezirksliga Gr. 059",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=59"
+    },
+    {
+     "label": "Herren 4er 3",
+     "liga": "Herren 4er Kreisliga Gr. 068 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=68"
+    },
+    {
+     "label": "Herren 30 4er 1",
+     "liga": "Herren 30 4er Kreisklasse 1 Gr. 091 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=91"
+    },
+    {
+     "label": "Herren 40 6er 2",
+     "liga": "Herren 40 Bezirksliga Gr. 102",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=102"
+    },
+    {
+     "label": "Herren 40 4er 3",
+     "liga": "Herren 40 4er Kreisklasse 2 Gr. 115 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=115"
+    },
+    {
+     "label": "Herren 50 4er 2",
+     "liga": "Herren 50 4er Bezirksklasse Gr. 124",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=124"
+    },
+    {
+     "label": "Herren 55 4er 1",
+     "liga": "Herren 55 4er Bezirksliga Gr. 136",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=136"
+    },
+    {
+     "label": "Herren 60 4er 2",
+     "liga": "Herren 60 4er Münsterlandliga Gr. 141",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=141"
+    },
+    {
+     "label": "Herren 65 4er 1",
+     "liga": "Herren 65 4er Bezirksliga Gr. 149",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=149"
+    },
+    {
+     "label": "Herren 65 Doppel 1",
+     "liga": "Herren 65 Doppel Münsterlandliga Gr. 158",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=158"
+    },
+    {
+     "label": "Gemischte Mannschaften 2",
+     "liga": "Gemischte Mannschaften Münsterlandliga Gr. 162",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=162"
+    },
+    {
+     "label": "Gemischte Mannschaften 4",
+     "liga": "Gemischte Mannschaften Bezirksliga Gr. 163",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=163"
+    },
+    {
+     "label": "Gemischte Mannschaften 3",
+     "liga": "Gemischte Mannschaften Bezirksliga Gr. 164",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=164"
+    },
+    {
+     "label": "Mixed 50 Doppel 1",
+     "liga": "Mixed 50 Bezirksklasse Gr. 173",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=173"
+    },
+    {
+     "label": "Gemischt U8 Kleinfeld 2er 1",
+     "liga": "Gemischt U8 2er Kleinfeld Kreisklasse 1 Gr. 197 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=197"
+    },
+    {
+     "label": "Gemischt U8 Kleinfeld 2er 2",
+     "liga": "Gemischt U8 2er Kleinfeld Kreisklasse 1 Gr. 198 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=198"
+    },
+    {
+     "label": "Gemischt U10 Midcourt 4er 1",
+     "liga": "Gemischt U10 Midcourt 4er Kreisliga Jugend Gr. 215",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=215"
+    },
+    {
+     "label": "Gemischt U10 Großfeld 4er 1",
+     "liga": "Gemischt U10 Großfeld Kreisliga Gr. 221",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=221"
+    },
+    {
+     "label": "Junioren U12 2er 2",
+     "liga": "Junioren U12 2er Kreisliga Gr. 226",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=226"
+    },
+    {
+     "label": "Junioren U15 2er 2",
+     "liga": "Junioren U15 2er Kreisliga Gr. 234",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=234"
+    },
+    {
+     "label": "Junioren U15 4er classic 1",
+     "liga": "Junioren U15 classic Münsterlandliga Gr. 246",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=246"
+    },
+    {
+     "label": "Junioren U18 2er 1",
+     "liga": "Junioren U18 2er Kreisliga Gr. 253",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=253"
+    },
+    {
+     "label": "Juniorinnen U15 2er 1",
+     "liga": "Juniorinnen U15 2er Kreisliga Gr. 274",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=274"
+    },
+    {
+     "label": "Juniorinnen U15 2er 2",
+     "liga": "Juniorinnen U15 2er Kreisklasse 1 Gr. 278 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=278"
+    },
+    {
+     "label": "Juniorinnen U18 2er 1",
+     "liga": "Juniorinnen U18 2er Kreisliga Gr. 286",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=286"
+    },
+    {
+     "label": "Junioren U12 4er classic 1",
+     "liga": "Junioren U12 classic Kreisliga Gr. 299",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=299"
+    },
+    {
+     "label": "Damen 6er 1",
+     "liga": "Damen Verbandsliga Gr. 003",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=3"
+    },
+    {
+     "label": "Herren 40 6er 1",
+     "liga": "Herren 40 Westfalenliga Gr. 028",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=28"
+    },
+    {
+     "label": "Herren 50 6er 1",
+     "liga": "Herren 50 Westfalenliga Gr. 031",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=31"
+    },
+    {
+     "label": "Gemischte Mannschaften 1",
+     "liga": "Gemischte Mannschaften Verbandsliga Gr. 056",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=56"
+    },
+    {
+     "label": "Herren 60 ",
+     "liga": "Herren 60 RL Gr. 006 WE",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?targetFed=RLW&championship=RLW+2026&group=6"
+    },
+    {
+     "label": "Damen 50 ",
+     "liga": "Damen 50 RL Gr. 014 WE",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?targetFed=RLW&championship=RLW+2026&group=14"
+    }
+   ],
+   "union-muenster": [
+    {
+     "label": "Damen 30 4er 1",
+     "liga": "Damen 30 4er Kreisliga Gr. 024 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=24"
+    },
+    {
+     "label": "Damen 40 4er 1",
+     "liga": "Damen 40 4er Bezirksliga Gr. 031",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=31"
+    },
+    {
+     "label": "Damen 50 4er 1",
+     "liga": "Damen 50 4er Bezirksliga Gr. 046",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=46"
+    },
+    {
+     "label": "Herren 6er 1",
+     "liga": "Herren Bezirksliga Gr. 059",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=59"
+    },
+    {
+     "label": "Herren 4er 2",
+     "liga": "Herren 4er Kreisklasse 1 Gr. 069 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=69"
+    },
+    {
+     "label": "Herren 4er 3",
+     "liga": "Herren 4er Kreisklasse 3 Gr. 071 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=71"
+    },
+    {
+     "label": "Herren 65 4er 1",
+     "liga": "Herren 65 4er Bezirksliga Gr. 148",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=148"
+    },
+    {
+     "label": "Gemischte Mannschaften 1",
+     "liga": "Gemischte Mannschaften Münsterlandliga Gr. 162",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=162"
+    },
+    {
+     "label": "Gemischte Mannschaften 40 1",
+     "liga": "Gemischte Mannschaften 40 Münsterlandliga Gr. 167",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=167"
+    },
+    {
+     "label": "Mixed U12 2er 1",
+     "liga": "Mixed U12 2er Kreisliga Gr. 193",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=193"
+    },
+    {
+     "label": "Gemischt U10 Midcourt 2er 1",
+     "liga": "Gemischt U10 2er Midcourt Kreisklasse Gr. 211",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=211"
+    },
+    {
+     "label": "Junioren U12 2er 1",
+     "liga": "Junioren U12 2er Kreisliga Gr. 226",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=226"
+    },
+    {
+     "label": "Junioren U15 2er 2",
+     "liga": "Junioren U15 2er Kreisklasse 1 Gr. 238 K2",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=238"
+    },
+    {
+     "label": "Junioren U15 4er classic 1",
+     "liga": "Junioren U15 classic Münsterlandliga Gr. 246",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=246"
+    },
+    {
+     "label": "Junioren U18 4er classic 1",
+     "liga": "Junioren U18 classic Münsterlandliga Gr. 261",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=261"
+    },
+    {
+     "label": "Junioren U18 4er classic 2",
+     "liga": "Junioren U18 classic Kreisliga Gr. 263",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=263"
+    },
+    {
+     "label": "Juniorinnen U15 4er classic 1",
+     "liga": "Juniorinnen U15 classic Kreisklasse 1 Gr. 284 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=284"
+    },
+    {
+     "label": "Juniorinnen U18 4er classic 1",
+     "liga": "Juniorinnen U18 classic Kreisliga Gr. 297",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=297"
+    },
+    {
+     "label": "Damen 6er 2",
+     "liga": "Damen Verbandsliga Gr. 003",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=3"
+    },
+    {
+     "label": "Herren 40 6er 1",
+     "liga": "Herren 40 Verbandsliga Gr. 029",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=29"
+    },
+    {
+     "label": "Damen ",
+     "liga": "Damen RL Gr. 011 WE",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?targetFed=RLW&championship=RLW+2026&group=11"
+    }
+   ],
+   "neuenkirchen": [
+    {
+     "label": "Damen 4er 1",
+     "liga": "Damen 4er Bezirksklasse Gr. 004",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=4"
+    },
+    {
+     "label": "Damen 4er 2",
+     "liga": "Damen 4er Kreisklasse 2 Gr. 009 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=9"
+    },
+    {
+     "label": "Damen 30 4er 1",
+     "liga": "Damen 30 4er Kreisliga Gr. 022 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=22"
+    },
+    {
+     "label": "Damen 40 4er 1",
+     "liga": "Damen 40 4er Münsterlandliga Gr. 029",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=29"
+    },
+    {
+     "label": "Damen 50 4er 1",
+     "liga": "Damen 50 4er Münsterlandliga Gr. 044",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=44"
+    },
+    {
+     "label": "Damen 50 4er 2",
+     "liga": "Damen 50 4er Kreisliga Gr. 049 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=49"
+    },
+    {
+     "label": "Damen 40 Doppel 1",
+     "liga": "Damen 40 Doppel Bezirksliga Gr. 052",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=52"
+    },
+    {
+     "label": "Herren 4er 1",
+     "liga": "Herren 4er Kreisliga Gr. 064 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=64"
+    },
+    {
+     "label": "Herren 30 4er 1",
+     "liga": "Herren 30 4er Kreisliga Gr. 086 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=86"
+    },
+    {
+     "label": "Herren 40 6er 1",
+     "liga": "Herren 40 Bezirksliga Gr. 102",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=102"
+    },
+    {
+     "label": "Herren 40 4er 2",
+     "liga": "Herren 40 4er Kreisliga Gr. 107 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=107"
+    },
+    {
+     "label": "Herren 50 4er 1",
+     "liga": "Herren 50 4er Kreisliga Gr. 127 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=127"
+    },
+    {
+     "label": "Herren 55 4er 1",
+     "liga": "Herren 55 4er Bezirksliga Gr. 137",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=137"
+    },
+    {
+     "label": "Herren 50 Doppel 1",
+     "liga": "Herren 50 Doppel Münsterlandliga Gr. 153",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=153"
+    },
+    {
+     "label": "Gemischte Mannschaften 1",
+     "liga": "Gemischte Mannschaften Bezirksklasse Gr. 165",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=165"
+    },
+    {
+     "label": "Gemischte Mannschaften 40 1",
+     "liga": "Gemischte Mannschaften 40 Münsterlandliga Gr. 168",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=168"
+    },
+    {
+     "label": "Gemischt U9 Midcourt 2er 1",
+     "liga": "Gemischt U9 2er Midcourt Kreisklasse 1 Gr. 203 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=203"
+    },
+    {
+     "label": "Junioren U12 2er 1",
+     "liga": "Junioren U12 2er Kreisklasse 1 Gr. 227 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=227"
+    },
+    {
+     "label": "Junioren U12 2er 2",
+     "liga": "Junioren U12 2er Kreisklasse 1 Gr. 228 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=228"
+    },
+    {
+     "label": "Junioren U15 2er 1",
+     "liga": "Junioren U15 2er Kreisklasse 1 Gr. 236 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=236"
+    },
+    {
+     "label": "Junioren U18 2er 1",
+     "liga": "Junioren U18 2er Kreisklasse 1 Gr. 255 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=255"
+    },
+    {
+     "label": "Juniorinnen U12 2er 1",
+     "liga": "Juniorinnen U12 2er Kreisklasse 1 Gr. 268 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=268"
+    },
+    {
+     "label": "Juniorinnen U15 2er 2",
+     "liga": "Juniorinnen U15 2er Kreisklasse 1 Gr. 276 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=276"
+    },
+    {
+     "label": "Juniorinnen U15 4er classic 1",
+     "liga": "Juniorinnen U15 classic Kreisklasse 1 Gr. 284 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=284"
+    },
+    {
+     "label": "Juniorinnen U18 4er classic 1",
+     "liga": "Juniorinnen U18 classic Kreisklasse 1 Gr. 298 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=298"
+    }
+   ],
+   "ochtrup": [
+    {
+     "label": "Damen 4er 1",
+     "liga": "Damen 4er Kreisliga Gr. 007 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=7"
+    },
+    {
+     "label": "Damen 30 4er 1",
+     "liga": "Damen 30 4er Bezirksliga Gr. 018",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=18"
+    },
+    {
+     "label": "Damen 30 4er 2",
+     "liga": "Damen 30 4er Kreisliga Gr. 022 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=22"
+    },
+    {
+     "label": "Damen 40 4er 1",
+     "liga": "Damen 40 4er Bezirksliga Gr. 032",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=32"
+    },
+    {
+     "label": "Damen 50 4er 1",
+     "liga": "Damen 50 4er Bezirksliga Gr. 045",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=45"
+    },
+    {
+     "label": "Damen 60 Doppel 1",
+     "liga": "Damen 60 Doppel Bezirksliga Gr. 057",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=57"
+    },
+    {
+     "label": "Herren 4er 1",
+     "liga": "Herren 4er Kreisklasse 1 Gr. 065 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=65"
+    },
+    {
+     "label": "Herren 30 4er 1",
+     "liga": "Herren 30 4er Kreisliga Gr. 086 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=86"
+    },
+    {
+     "label": "Herren 30 4er 2",
+     "liga": "Herren 30 4er Kreisklasse 3 Gr. 089 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=89"
+    },
+    {
+     "label": "Herren 40 4er 1",
+     "liga": "Herren 40 4er Bezirksklasse Gr. 105",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=105"
+    },
+    {
+     "label": "Herren 40 4er 2",
+     "liga": "Herren 40 4er Kreisklasse 2 Gr. 109 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=109"
+    },
+    {
+     "label": "Herren 50 4er 1",
+     "liga": "Herren 50 4er Kreisklasse 1 Gr. 128 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=128"
+    },
+    {
+     "label": "Herren 60 4er 1",
+     "liga": "Herren 60 4er Bezirksliga Gr. 143",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=143"
+    },
+    {
+     "label": "Herren 50 Doppel 1",
+     "liga": "Herren 50 Doppel Bezirksliga Gr. 154",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=154"
+    },
+    {
+     "label": "Herren 65 Doppel 1",
+     "liga": "Herren 65 Doppel Münsterlandliga Gr. 158",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=158"
+    },
+    {
+     "label": "Mixed U15 2er 1",
+     "liga": "Mixed U15 2er Kreisliga Gr. 194",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=194"
+    },
+    {
+     "label": "Gemischt U8 Kleinfeld 4er 1",
+     "liga": "Gemischt U8 Kleinfeld Kreisliga Gr. 201",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=201"
+    },
+    {
+     "label": "Gemischt U10 Großfeld 4er 1",
+     "liga": "Gemischt U10 Großfeld Kreisklasse 1 Gr. 222 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=222"
+    },
+    {
+     "label": "Junioren U15 2er 2",
+     "liga": "Junioren U15 2er Kreisklasse 1 Gr. 237 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=237"
+    },
+    {
+     "label": "Junioren U15 4er classic 1",
+     "liga": "Junioren U15 classic Kreisklasse 1 Gr. 249 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=249"
+    }
+   ],
+   "tc22-rheine": [
+    {
+     "label": "Damen 6er 1",
+     "liga": "Damen Bezirksliga Gr. 002",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=2"
+    },
+    {
+     "label": "Damen 40 4er 1",
+     "liga": "Damen 40 4er Münsterlandliga Gr. 030",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=30"
+    },
+    {
+     "label": "Damen 40 4er 2",
+     "liga": "Damen 40 4er Kreisliga Gr. 036 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=36"
+    },
+    {
+     "label": "Herren 6er 1",
+     "liga": "Herren Münsterlandliga Gr. 058",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=58"
+    },
+    {
+     "label": "Herren 4er 2",
+     "liga": "Herren 4er Kreisliga Gr. 064 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=64"
+    },
+    {
+     "label": "Herren 30 4er 1",
+     "liga": "Herren 30 4er Bezirksliga Gr. 082",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=82"
+    },
+    {
+     "label": "Herren 40 6er 1",
+     "liga": "Herren 40 Bezirksliga Gr. 103",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=103"
+    },
+    {
+     "label": "Herren 55 4er 2",
+     "liga": "Herren 55 4er Münsterlandliga Gr. 135",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=135"
+    },
+    {
+     "label": "Junioren U12 2er 1",
+     "liga": "Junioren U12 2er Kreisliga Gr. 225",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=225"
+    },
+    {
+     "label": "Junioren U15 2er 1",
+     "liga": "Junioren U15 2er Kreisklasse 1 Gr. 235 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=235"
+    },
+    {
+     "label": "Junioren U15 2er 2",
+     "liga": "Junioren U15 2er Kreisklasse 1 Gr. 236 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=236"
+    },
+    {
+     "label": "Junioren U18 4er classic 1",
+     "liga": "Junioren U18 classic Kreisliga Gr. 263",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=263"
+    },
+    {
+     "label": "Juniorinnen U15 2er 2",
+     "liga": "Juniorinnen U15 2er Kreisklasse 1 Gr. 276 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=276"
+    },
+    {
+     "label": "Juniorinnen U15 4er classic 1",
+     "liga": "Juniorinnen U15 classic Kreisklasse 1 Gr. 284 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=284"
+    },
+    {
+     "label": "Juniorinnen U18 2er 3",
+     "liga": "Juniorinnen U18 2er Kreisklasse 1 Gr. 289 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=289"
+    },
+    {
+     "label": "Juniorinnen U18 4er classic 1",
+     "liga": "Juniorinnen U18 classic Kreisliga Gr. 297",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=297"
+    },
+    {
+     "label": "Juniorinnen U18 4er classic 2",
+     "liga": "Juniorinnen U18 classic Kreisklasse 1 Gr. 298 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=298"
+    },
+    {
+     "label": "Herren 55 6er 1",
+     "liga": "Herren 55 Verbandsliga Gr. 036",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=WTV+2026&group=36"
+    }
+   ],
+   "union-rheine": [
+    {
+     "label": "Herren 6er 1",
+     "liga": "Herren Bezirksklasse Gr. 061",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=61"
+    },
+    {
+     "label": "Herren 30 4er 1",
+     "liga": "Herren 30 4er Kreisklasse 1 Gr. 087 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=87"
+    },
+    {
+     "label": "Herren 30 4er 2",
+     "liga": "Herren 30 4er Kreisklasse 3 Gr. 089 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=89"
+    },
+    {
+     "label": "Herren 60 4er 1",
+     "liga": "Herren 60 4er Münsterlandliga Gr. 141",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=141"
+    },
+    {
+     "label": "Mixed U12 2er 1",
+     "liga": "Mixed U12 2er Kreisliga Gr. 193",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=193"
+    },
+    {
+     "label": "Gemischt U10 Midcourt 2er 1",
+     "liga": "Gemischt U10 2er Midcourt Kreisklasse Gr. 210",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=210"
+    },
+    {
+     "label": "Junioren U15 2er 1",
+     "liga": "Junioren U15 2er Kreisklasse 1 Gr. 237 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=237"
+    },
+    {
+     "label": "Junioren U18 2er 1",
+     "liga": "Junioren U18 2er Kreisklasse 1 Gr. 254 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=254"
+    },
+    {
+     "label": "Juniorinnen U15 2er 1",
+     "liga": "Juniorinnen U15 2er Kreisklasse 1 Gr. 276 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=276"
+    },
+    {
+     "label": "Juniorinnen U18 2er 1",
+     "liga": "Juniorinnen U18 2er Kreisklasse 1 Gr. 289 K1",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=289"
+    }
+   ],
+   "wolbeck": [
+    {
+     "label": "Damen 40 4er 1",
+     "liga": "Damen 40 4er Münsterlandliga Gr. 029",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=29"
+    },
+    {
+     "label": "Damen 40 4er 2",
+     "liga": "Damen 40 4er Bezirksklasse Gr. 033",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=33"
+    },
+    {
+     "label": "Damen 40 4er 3",
+     "liga": "Damen 40 4er Kreisklasse 1 Gr. 041 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=41"
+    },
+    {
+     "label": "Damen 50 4er 1",
+     "liga": "Damen 50 4er Kreisliga Gr. 050 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=50"
+    },
+    {
+     "label": "Herren 4er 1",
+     "liga": "Herren 4er Kreisliga Gr. 072 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=72"
+    },
+    {
+     "label": "Herren 30 4er 1",
+     "liga": "Herren 30 4er Kreisklasse 3 Gr. 096 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=96"
+    },
+    {
+     "label": "Herren 40 6er 1",
+     "liga": "Herren 40 Bezirksliga Gr. 102",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=102"
+    },
+    {
+     "label": "Herren 40 4er 2",
+     "liga": "Herren 40 4er Kreisklasse 2 Gr. 115 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=115"
+    },
+    {
+     "label": "Mixed 40 Doppel 1",
+     "liga": "Mixed 40 Münsterlandliga Gr. 169",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=169"
+    },
+    {
+     "label": "Hobby Herren B 1",
+     "liga": "Herren B Gr. 190",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=190"
+    },
+    {
+     "label": "Mixed U18 2er 1",
+     "liga": "Mixed U18 2er Kreisklasse 1 Gr. 195",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=195"
+    },
+    {
+     "label": "Gemischt U8 Kleinfeld 2er 1",
+     "liga": "Gemischt U8 2er Kleinfeld Kreisklasse 1 Gr. 199 K4",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=199"
+    },
+    {
+     "label": "Gemischt U9 Midcourt 2er 1",
+     "liga": "Gemischt U9 2er Midcourt Kreisklasse 1 Gr. 205 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=205"
+    },
+    {
+     "label": "Gemischt U10 Großfeld 2er 2",
+     "liga": "Gemischt U10 2er Großfeld Kreisklasse 1 Gr. 219 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=219"
+    },
+    {
+     "label": "Gemischt U10 Großfeld 2er 1",
+     "liga": "Gemischt U10 2er Großfeld Kreisklasse 1 Gr. 220 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=220"
+    },
+    {
+     "label": "Junioren U12 2er 1",
+     "liga": "Junioren U12 2er Kreisliga Gr. 225",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=225"
+    },
+    {
+     "label": "Junioren U15 2er 2",
+     "liga": "Junioren U15 2er Kreisliga Gr. 234",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=234"
+    },
+    {
+     "label": "Junioren U15 4er classic 1",
+     "liga": "Junioren U15 classic Münsterlandliga Gr. 246",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=246"
+    },
+    {
+     "label": "Junioren U18 4er classic 1",
+     "liga": "Junioren U18 classic Münsterlandliga Gr. 261",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=261"
+    },
+    {
+     "label": "Junioren U18 4er classic 2",
+     "liga": "Junioren U18 classic Kreisliga Gr. 262",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=262"
+    },
+    {
+     "label": "Juniorinnen U15 2er 1",
+     "liga": "Juniorinnen U15 2er Kreisklasse 1 Gr. 281 K3",
+     "url": "https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/groupPage?championship=MS+2026&group=281"
+    }
+   ]
+  }
+ },
+ "erstellt": "2026-11-21"
+}
