@@ -28,6 +28,7 @@
     margin-left: 12px;
     flex-shrink: 0;
   }
+  .accordion-sub { display: block; font-size: 0.78rem; font-weight: 500; opacity: 0.6; margin-top: 2px; }
   .accordion-btn.open .accordion-arrow { transform: rotate(180deg); }
   .accordion-body {
     max-height: 0;
@@ -51,7 +52,10 @@
   .acc-feature-list li { margin-bottom: 10px; }
   .acc-feature-label { font-weight: 700; }
   #acc-statistik.open { max-height: 8000px; }
+  #acc-aktiv.open { max-height: 30000px; }
   #acc-mannschaft.open { max-height: 2000px; }
+  #acc-altersklassen.open { max-height: 30000px; }
+  .jahrgang-legend { font-size: 0.78rem; opacity: 0.7; margin-top: 10px; }
 </style>
 
 <div class="accordion-item">
@@ -61,7 +65,7 @@
   </button>
   <div class="accordion-body" id="acc-ueber">
     <div class="accordion-body-inner">
-      <p>Aktuelle Spielplandaten des TC 1928 Ochtrup – direkt vom Verband.</p>
+      <p>Aktuelle Spielplandaten von Tennisvereinen im Münsterland – direkt vom Verband.</p>
       <p>Tipp: App zum Homescreen hinzufügen für schnellen Zugriff ohne Browser.</p>
     </div>
   </div>
@@ -148,6 +152,18 @@
   </div>
 </div>
 
+<div class="accordion-item">
+  <button class="accordion-btn" data-target="acc-aktiv"
+    onclick="toggleAccordion('acc-aktiv'); openAktiveSpieler();">
+    <span>Aktive Spieler<span class="accordion-sub">Inaktive in der ganzen App ausblenden</span></span>
+    <span class="accordion-arrow">▼</span>
+  </button>
+  <div class="accordion-body" id="acc-aktiv">
+    <div class="accordion-body-inner">
+      <div id="aktiv-container"></div>
+    </div>
+  </div>
+</div>
 
 <div class="accordion-item">
   <button class="accordion-btn" data-target="acc-statistik"
@@ -173,6 +189,21 @@
   <div class="accordion-body" id="acc-mannschaft">
     <div class="accordion-body-inner">
       <div id="mannschaft-container"></div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-btn" data-target="acc-altersklassen" onclick="toggleAccordion('acc-altersklassen'); renderAltersklassen();">
+    <span>Altersklassen<span class="accordion-sub">Winter 2026/27 und Sommer 2027</span></span>
+    <span class="accordion-arrow">▼</span>
+  </button>
+  <div class="accordion-body" id="acc-altersklassen">
+    <div class="accordion-body-inner">
+      <div id="ak-container"></div>
+      <p class="jahrgang-legend"><em>Spielberechtigt: Jugendliche dürfen höchstens eine Altersklasse höher spielen, bei Herren bzw. Damen ab Jahrgang 2012 (15 Jahre). Erwachsene dürfen in allen jüngeren Erwachsenenklassen spielen.</em></p>
+      <p class="jahrgang-legend"><em>Im Winter können im WTV-Bezirk Münsterland bei der Jugend nur Mannschaften in U12, U15 und U18 gemeldet werden.</em></p>
+      <p class="jahrgang-legend"><em>Jeder Knopf zeigt die Spieler, deren eigene Altersklasse das ist (originäre Altersklasse). Klassen lassen sich beliebig kombinieren – z.&nbsp;B. Junioren U12 + U15 oder Herren + Junioren U18.</em></p>
     </div>
   </div>
 </div>

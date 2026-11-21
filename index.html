@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>TC 1928 Ochtrup – Spielplan 2026</title>
+<title>Spielplan</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="logo2.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Spielplan 26">
+<meta name="apple-mobile-web-app-title" content="Spielplan">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0f1117">
 <meta http-equiv="cache-control" content="no-cache">
@@ -30,7 +30,7 @@
 
   .header { text-align: center; margin-bottom: 0; padding-top: env(safe-area-inset-top); padding-bottom: 20px; position: sticky; top: 0; z-index: 5; background: #0f1117; }
   @media (hover: hover) and (pointer: fine) { .header { padding-top: 18px; } }
-  .header-title { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 0 36px; }
+  .header-title { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px 36px 0; }
   .btn-info {
     position: absolute; top: env(safe-area-inset-top); right: 0;
     width: 28px; height: 28px;
@@ -58,6 +58,20 @@
     display: inline-flex; align-items: center; justify-content: center;
     transition: border-color 0.15s, color 0.15s;
   }
+  .btn-refresh-header {
+    position: absolute; top: env(safe-area-inset-top); left: 36px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 1px solid #3a3f60;
+    background: rgba(144,149,176,0.08);
+    color: #9095b0;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-refresh-header:disabled { opacity: 0.4; cursor: default; }
+  .btn-refresh-header.spinning { animation: spin 0.7s linear infinite; }
   #info-view { display: none; }
   #settings-backdrop {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 19; display: none;
@@ -68,7 +82,7 @@
     left: max(32px, calc((100% - 576px) / 2));
     right: max(32px, calc((100% - 576px) / 2));
     background: #0f1117;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid #2e3150;
     border-radius: 14px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 6px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
     padding: 16px 18px 16px;
@@ -111,6 +125,33 @@
     color: #fff;
     line-height: 1;
   }
+  .header-club-link { color: inherit; text-decoration: none; }
+  .btn-club-switch { background: none; border: none; color: inherit; font: inherit; letter-spacing: inherit;
+    text-transform: inherit; cursor: pointer; padding: 2px 0; text-decoration: underline dotted; text-underline-offset: 3px; }
+  .btn-club-switch:hover { text-decoration-style: solid; }
+
+  /* Vereinsauswahl: eigene Ascheplatz-Optik wie das App-Symbol, unabhängig vom Farbschema */
+  #club-picker { display: none; position: fixed; inset: 0; z-index: 1000; overflow-y: auto;
+    background: radial-gradient(ellipse at 45% 30%, #d9733f 0%, #a8451f 80%);
+    justify-content: center; align-items: flex-start;
+    padding: calc(env(safe-area-inset-top) + 28px) 16px calc(env(safe-area-inset-bottom) + 28px); }
+  .club-picker-inner { width: 100%; max-width: 420px; text-align: center; }
+  .club-picker-icon { width: 76px; height: 76px; border-radius: 18px; border: 2px solid rgba(255,255,255,.75); box-shadow: 0 6px 18px rgba(60,20,5,.35); }
+  .club-picker-title { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 2.4rem;
+    letter-spacing: .08em; color: #fff; margin-top: 10px; line-height: 1; }
+  .club-picker-sub { color: rgba(255,255,255,.85); font-size: .9rem; margin: 6px 0 22px; }
+  #club-picker-list { display: flex; flex-direction: column; gap: 10px; }
+  .club-pick { display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    width: 100%; padding: 14px 18px; border-radius: 14px; cursor: pointer; text-align: left;
+    background: rgba(255,255,255,.94); border: 2px solid transparent; color: #3a1a0c;
+    font-family: inherit; box-shadow: 0 2px 6px rgba(60,20,5,.18); }
+  .club-pick:hover { background: #fff; }
+  .club-pick.on { border-color: #f3ff6b; }
+  .club-pick-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: .05em; line-height: 1.1; }
+  .club-pick-ort { font-size: .78rem; color: #8a4a2a; white-space: nowrap; }
+  #club-picker-close { margin-top: 18px; background: none; border: 1.5px solid rgba(255,255,255,.7); color: #fff;
+    border-radius: 20px; padding: 8px 22px; font-family: inherit; font-size: .85rem; cursor: pointer; }
+  .header-club-link:hover { text-decoration: underline; }
   .header p {
     color: #7a7f96;
     font-size: 0.75rem;
@@ -119,6 +160,29 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
+  /* ── Saison-Umschalter (Sommer / Winter) ── */
+  .season-row { display: flex; gap: 6px; margin-top: 10px; }
+  .season-row:empty { display: none; }
+  .btn-season {
+    background: transparent;
+    border: 1px solid #2e3150;
+    border-radius: 999px;
+    color: #7a7f96;
+    font-family: inherit;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 7px 6px;
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .btn-season.on { color: #fff; font-weight: 700; border-color: #9095b0; background: rgba(144,149,176,0.10); }
 
   /* ── Next match box ── */
   .next-match-box {
@@ -126,12 +190,11 @@
     border: 1px solid #252840;
     border-radius: 12px;
     padding: 14px 16px;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
     display: none;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    min-height: calc(4.4rem + 4.2em + 75px);
     position: relative;
     isolation: isolate;
   }
@@ -147,19 +210,8 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
-  }
-  .nm-label {
-    align-self: center;
-    padding: 6px 18px;
-    border-radius: 20px;
-    border: 1px solid #2e3150;
-    background: transparent;
-    color: #9095b0;
-    font-size: 0.82rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 10px;
+    min-width: 0; /* darf schrumpfen, damit lange Spielklassen umbrechen statt in die Tageszahl zu laufen */
+    padding-right: 6px;
   }
   .nm-teams {
     display: flex;
@@ -169,8 +221,8 @@
     margin-top: 10px;
     line-height: 1.4;
     width: 100%;
-    min-height: 4.2em;
   }
+  .next-match-box.no-match .nm-teams { margin-top: 0; padding: 18px 0; justify-content: center; }
   .nm-match-teams {
     flex: 1;
     min-width: 0;
@@ -191,13 +243,15 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
     margin-top: 8px;
-    white-space: nowrap;
+    white-space: normal; /* lange Bezeichnung (z. B. „… · 2. Mannschaft") bricht um */
+    line-height: 1.35;
     position: relative;
     isolation: isolate;
   }
   .nm-league::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: rgba(255,255,255,var(--overlay-dark)); pointer-events: none; z-index: -1; }
   .nm-league:empty { display: none; }
   .nm-date { font-size: 0.88rem; color: #c8cae0; margin-top: 2px; }
+  .nm-heim { color: #fff; font-weight: 700; }
   .nm-right { text-align: right; flex-shrink: 0; }
   .nm-days {
     font-family: 'Bebas Neue', sans-serif;
@@ -284,10 +338,10 @@
     transition: none;
   }
   #favoriten-card.open { opacity: 1; }
-  /* Header-Zeile im Panel: Close-Button zentriert, gleiche Größe wie Trigger */
   .favoriten-header-row { display: flex; gap: 6px; margin-bottom: 12px; position: sticky; top: 0; background: rgba(15,17,30,0.98); z-index: 1; padding-top: 12px; }
   .favoriten-header-spacer { flex: 1; }
-  .btn-favoriten-close { flex: 1; margin: 0 6px; padding-top: 14px; padding-bottom: 14px; color: #c8cade; border-color: rgba(144,149,176,0.5); background: rgba(144,149,176,0.1); }
+  .btn-fav-text { flex: 1; min-width: 0; text-align: center; line-height: 1.35; white-space: normal; padding: 11px 6px; color: #b0b5d0; border-color: rgba(144,149,176,0.45); background: rgba(144,149,176,0.06); }
+  .btn-favoriten-close { color: #c8cade; border-color: rgba(144,149,176,0.5); background: rgba(144,149,176,0.1); }
   #favoriten-card #team-btns-container .btn:not(.on) { color: #b0b5d0 !important; border-color: rgba(144,149,176,0.4) !important; }
   /* Team-Farben werden dynamisch per JS generiert → siehe #dynamic-team-css */
 
@@ -307,7 +361,7 @@
     background: #1e2a45;
     border-radius: 12px;
     margin-bottom: 10px;
-    padding: 18px 16px;
+    padding: 14px 16px;
     border: 1px solid #1e2235;
     position: relative;
     isolation: isolate;
@@ -316,7 +370,7 @@
   /* Karten-Farben werden dynamisch per JS generiert → siehe #dynamic-team-css */
   .card.home-game, #next-match-box.home-game { border-color: #fff !important; border-width: 2px; }
   .card.past-game .result {
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 0.05em;
     background: #fff;
@@ -330,6 +384,7 @@
   .card.past-game .result.loss { color: #e03838; }
   .card.past-game .result.draw { color: #d4a000; }
   .card.past-game .result.open { background: transparent; color: #444a68; }
+  .nm-result { display: flex; align-items: center; min-height: 3.2rem; }
   .past-divider     { height: 32px; }
 
   /* ── Detail-View (Tabelle) ── */
@@ -361,6 +416,7 @@
   }
   #report-tabelle-btn { background: rgba(100,140,220,0.15); border-color: #4a6aaa; color: #8aadd4; }
   /* ── Spenden-Banner ── */
+  #donate-banner, #info-donate { display: none !important; }
   #donate-banner {
     margin: 0 0 16px;
     padding: 18px 16px 14px;
@@ -706,6 +762,14 @@
 
   /* ── Statistik-Tabelle ── */
   #statistik-container { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 4px; }
+  .stat-gender-row { display: flex; gap: 6px; margin-bottom: 12px; }
+  .stat-gender-row .btn { flex: 1; min-width: 0; text-align: center; padding: 9px 6px; font-size: 0.78rem; }
+  .stat-name-cell { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .stat-name { min-width: 0; }
+  .gender-badge { flex-shrink: 0; width: 17px; height: 17px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; color: #fff; line-height: 1; }
+  .gb-m { background: #2b6fd6; }
+  .gb-w { background: #e84d8a; }
+  .gb-x { background: #555a7a; }
   .stat-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
   .stat-table th {
     padding: 7px 6px; text-align: left;
@@ -719,52 +783,22 @@
   .stat-table th.sort-desc::after { content: ' ▼'; font-size: 0.6em; opacity: 0.8; }
   .stat-table td { padding: 7px 6px; color: #c8cad8; border-bottom: 1px solid rgba(144,149,176,0.08); white-space: nowrap; }
   .stat-table td:first-child { color: #e8eaf0; white-space: normal; min-width: 100px; }
+  /* Spalte Nr (laufende Nummer) vor dem Namen */
+  .stat-table td.stat-nr, .stat-table th.stat-nr { width: 1%; white-space: nowrap; min-width: 0; text-align: right; padding-right: 2px; color: #c8cad8; opacity: 0.5; font-variant-numeric: tabular-nums; }
+  .stat-table th.stat-nr { color: #7a7f96; opacity: 1; }
+  .stat-table td.stat-nr + td { color: #e8eaf0; white-space: normal; min-width: 100px; }
   .stat-table tr:last-child td { border-bottom: none; }
+  .stat-table td.stat-klasse { white-space: normal; min-width: 80px; opacity: 0.8; }
+  #mannschaft-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .stat-rank-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; padding: 0 6px; border-radius: 50px; background: rgba(200,202,216,0.15); border: none; cursor: pointer; color: #e8eaf0; font-size: 0.82rem; font-weight: 700; font-family: inherit; }
   .stat-table td:last-child { text-align: center; }
   .stat-diff-pos  { color: #28a856; font-weight: 600; }
   .stat-diff-neg  { color: #e03838; }
   .stat-diff-zero { color: #9095b0; }
 
-  .card-tag-row {
-    text-align: center;
-    margin-bottom: 14px;
-  }
-  .card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-    gap: 8px;
-  }
-  .card-date {
-    font-size: 0.85rem;
-    color: #c8cde4;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-    flex-shrink: 0;
-    font-weight: 600;
-  }
-  .card-time { font-size: 0.85rem; color: #c8cde4; margin-left: 4px; font-weight: 600; }
-  .card-countdown { flex: 1; display: flex; justify-content: center; align-items: center; font-size: 0.85rem; color: #c8cde4; font-weight: 600; white-space: nowrap; padding-right: 12px; }
+  .card-note { font-size: 0.75rem; color: rgba(200,205,228,0.55); margin-top: 8px; font-style: italic; }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   .blink { animation: blink 1s step-end infinite; }
-  .card-countdown.blink { animation: blink 1s step-end infinite; }
-
-  .tag {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 20px;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    position: relative;
-    isolation: isolate;
-  }
-  .card-tag-row .tag::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: rgba(255,255,255,var(--overlay-dark)); pointer-events: none; z-index: -1; }
-  /* Tag-Farben werden dynamisch per JS generiert → siehe #dynamic-team-css */
 
   .btn-tabelle {
     background: rgba(255,255,255,0.15);
@@ -782,26 +816,10 @@
   }
 
 
-  .card-match {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 4px;
-  }
-  .card-match-teams {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    row-gap: 2px;
-  }
-  .team          { font-size: 0.92rem; font-weight: 700; color: #fff; line-height: 1.3; }
+  .team          { font-weight: 700; color: #fff; text-transform: uppercase; }
   .team.opponent { font-weight: 400; color: #c0c4d8; }
-  .vs { font-size: 0.75rem; color: #c0c4d8; font-weight: 400; margin: 0 6px; flex-shrink: 0; }
+  .vs { font-size: 0.85rem; color: #c8cde4; font-weight: 600; margin: 0 5px; flex-shrink: 0; }
   @media (max-width: 480px) {
-    .card-match-teams .team:not(.opponent) { width: 100%; }
-    .card-match-teams .vs { display: none; }
     .nm-match-teams span:first-child { width: 100%; }
     .nm-match-teams span:nth-child(2) { display: none; }
     .detail-schedule-teams span:first-child { width: 100%; }
@@ -884,6 +902,61 @@
     padding-bottom: calc(40px + env(safe-area-inset-bottom));
   }
 
+  .jahrgang-box { border: 1px solid rgba(144,149,176,0.3); border-radius: 12px; padding: 10px 12px; margin-bottom: 12px; }
+  .jahrgang-box:last-child { margin-bottom: 0; }
+  .jahrgang-box-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 0.05em; color: #fff; margin-bottom: 4px; }
+  /* Altersklassen-Filter: Farben wie die Mannschaftsknöpfe (buildTeamCSS) */
+  .ak-group-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.6; font-weight: 700; margin: 4px 0 6px; }
+  .ak-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 14px; }
+  .ak-row .btn { min-width: 0; text-align: center; padding: 7px 2px; font-size: 0.74rem; line-height: 1.2; text-transform: none; letter-spacing: 0; }
+  .ak-row .btn small { display: block; font-size: 0.64rem; opacity: 0.8; font-weight: 500; }
+  .ak-btn.ak-jugend { border-color: rgba(3,78,22,0.28); background: rgba(3,78,22,0.07); color: #51756b; }
+  .ak-btn.ak-jugend.on { border-color: #84a98d; background: #0d2824; color: #fff; }
+  .ak-btn.ak-herren { border-color: rgba(3,42,122,0.28); background: rgba(3,42,122,0.07); color: #516598; }
+  .ak-btn.ak-herren.on { border-color: #8497bf; background: #0d1c44; color: #fff; }
+  .ak-btn.ak-damen { border-color: rgba(220,80,130,0.28); background: rgba(220,80,130,0.07); color: #b2769b; }
+  .ak-btn.ak-damen.on { border-color: #f0aac3; background: #532946; color: #fff; }
+  .ak-kids { border: 1px dashed rgba(132,169,141,0.55); border-radius: 12px; padding: 8px 12px 10px; margin: -4px 0 14px; }
+  .ak-kids-row { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.85rem; margin-bottom: 4px; }
+  .ak-kids-row b { color: #84a98d; margin-right: 4px; }
+  .ak-kids small { display: block; font-size: 0.72rem; opacity: 0.65; }
+  .ak-season { border-left: 3px solid rgba(144,149,176,0.5); padding: 4px 0 4px 10px; margin: 2px 0 14px; font-weight: 700; font-size: 0.9rem; }
+  .ak-season small { display: block; font-weight: 500; font-size: 0.75rem; opacity: 0.65; margin-top: 2px; }
+  .ak-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .ak-table th, .ak-table td { padding: 7px 4px; text-align: left; border-bottom: 1px solid rgba(144,149,176,0.14); }
+  .ak-table tr:last-child td { border-bottom: none; }
+  .ak-table td:first-child { font-weight: 600; }
+  .ak-table th:nth-child(n+2), .ak-table td:nth-child(n+2) { width: 1%; white-space: nowrap; text-align: right; padding-left: 12px; }
+  .ak-table td:nth-child(n+2) { opacity: 0.8; font-variant-numeric: tabular-nums; }
+  /* Spalte # (laufende Nummer) vor dem Namen: Name wieder breit, links, fett */
+  .ak-table .ak-nr { width: 1%; white-space: nowrap; text-align: right; padding: 7px 6px 7px 0; font-weight: 500; opacity: 0.5; font-variant-numeric: tabular-nums; }
+  .ak-table th.ak-nr { font-size: 0.7rem; font-weight: 700; opacity: 0.55; text-transform: uppercase; letter-spacing: 0.04em; }
+  .ak-table td.ak-nr + td, .ak-table th.ak-nr + th { width: auto; white-space: normal; text-align: left; padding-left: 4px; }
+  .ak-table td.ak-nr + td { font-weight: 600; opacity: 1; }
+  .ak-tag { font-weight: 700; opacity: 1 !important; }
+  /* Spielername → tennis.de: sieht aus wie Text, dezent unterstrichen */
+  #info-view .info-content a.name-link, a.name-link { color: inherit !important; text-decoration: underline; text-decoration-color: rgba(144,149,176,0.45); text-underline-offset: 3px; -webkit-tap-highlight-color: transparent; }
+  .ak-tag.ak-jugend { color: #84a98d; }
+  .ak-tag.ak-herren { color: #8497bf; }
+  .ak-tag.ak-damen  { color: #f0aac3; }
+  .ak-sort { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; opacity: 0.55; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .ak-sort.on { opacity: 1; }
+  .ak-box-count { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; opacity: 0.7; letter-spacing: 0; margin-left: 4px; }
+  /* Menüpunkt „Aktive Spieler" (wirkt auf Spielerstatistik + Altersklassen) */
+  .aktiv-count { font-weight: 700; font-size: 0.9rem; margin: 2px 0 10px; }
+  .aktiv-search { width: 100%; box-sizing: border-box; margin-bottom: 10px; padding: 10px 14px; border-radius: 22px; border: 1px solid rgba(144,149,176,0.45); background: rgba(144,149,176,0.08); color: inherit; font-family: inherit; font-size: 16px; outline: none; -webkit-appearance: none; appearance: none; }
+  .aktiv-search:focus { border-color: #9095b0; }
+  .inaktiv-row { display: flex; gap: 6px; margin-bottom: 12px; }
+  .inaktiv-row .btn { flex: 1; min-width: 0; text-align: center; padding: 9px 6px; font-size: 0.78rem; line-height: 1.3; }
+  .inaktiv-row .btn:disabled { opacity: 0.4; cursor: default; }
+  .inaktiv-hint { font-size: 0.75rem; opacity: 0.7; margin: -4px 0 12px; }
+  .aktiv-table th:nth-child(n+2), .aktiv-table td:nth-child(n+2) { padding-left: 6px; }
+  .aktiv-table tbody tr { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .aktiv-table td.aktiv-state { color: #6fbf8a; font-weight: 700; font-size: 0.78rem; }
+  tr.is-inaktiv td:not(.aktiv-state) { opacity: 0.35 !important; text-decoration: line-through; }
+  tr.is-inaktiv td.aktiv-state { color: #9095b0; opacity: 1 !important; }
+  .inaktiv-note { font-size: 0.75rem; opacity: 0.65; font-style: italic; margin: 0 0 10px; }
+  .ak-box .inaktiv-note { margin: 8px 0 0; }
 
 </style>
 <style id="theme-override-css"></style>
@@ -892,6 +965,8 @@
   #info-view { background: #0f1117 !important; color: #c8cade !important; }
   #info-view #btn-info-back { color: #ffffff !important; }
   #info-view .info-content { color: #c8cade !important; }
+  #info-view .status-msg { color: #555a7a !important; }
+  #info-view .loading-row { color: #9095b0 !important; }
   #info-view .info-content h2 { color: #ffffff !important; }
   #info-view .info-content a { color: #8aadd4 !important; }
   #info-view #info-donate { background: rgba(255,255,255,0.04) !important; border-color: rgba(144,149,176,0.15) !important; }
@@ -909,12 +984,24 @@
 
 <div class="header">
   <button class="btn-settings" onclick="showSettings()" title="Einstellungen">⚙</button>
+  <button class="btn-refresh-header" id="btn-refresh" title="Neu laden" onclick="refreshData()">↺</button>
   <button class="btn-info" onclick="showInfo()" title="Info">i</button>
   <div class="header-title">
-    <img src="logo.png" class="header-logo" alt="TC 1928 Ochtrup Logo" onerror="this.style.display='none'">
-    <h1>TC 1928 Ochtrup</h1>
+    <h1><a class="header-club-link" id="club-link" href="#" target="_blank" rel="noopener" title="Vereinsseite auf liga.nu">Spielplan</a></h1>
   </div>
-  <p>Spielplan · Münsterland · Sommer 2026</p>
+  <p id="header-sub"></p>
+  <div class="season-row" id="season-row"></div>
+</div>
+
+<!-- Vereinsauswahl -->
+<div id="club-picker" role="dialog" aria-label="Verein wählen">
+  <div class="club-picker-inner">
+    <img src="logo2.png" class="club-picker-icon" alt="">
+    <h2 class="club-picker-title">Spielplan</h2>
+    <p class="club-picker-sub">Wähle deinen Verein</p>
+    <div id="club-picker-list"></div>
+    <button id="club-picker-close" onclick="closeClubPicker()">Abbrechen</button>
+  </div>
 </div>
 
 <!-- Spenden-Banner -->
@@ -938,23 +1025,7 @@
   <button class="btn-donate-later" onclick="closeDonate()">Vielleicht später →</button>
 </div>
 
-<div id="main-content" style="opacity:0;pointer-events:none">
-
-<!-- Nächstes Spiel -->
-<div id="next-match-box" class="next-match-box">
-  <div class="nm-label">Nächstes Spiel</div>
-  <div class="nm-top-row" id="nm-top-row">
-    <div class="nm-left-col">
-      <div class="nm-date"   id="nm-date"></div>
-      <div class="nm-league" id="nm-league"></div>
-    </div>
-    <div class="nm-right">
-      <div class="nm-days" id="nm-days"></div>
-      <div class="nm-unit" id="nm-unit"></div>
-    </div>
-  </div>
-  <div class="nm-teams" id="nm-teams"></div>
-</div>
+<div id="main-content">
 
 <!-- Controls-Slider: Hint-Banner + Filter-Buttons -->
 <div id="controls-slider">
@@ -979,11 +1050,26 @@
   </div>
 </div>
 
+<!-- Nächstes Spiel -->
+<div id="next-match-box" class="next-match-box">
+  <div class="nm-top-row" id="nm-top-row">
+    <div class="nm-left-col">
+      <div class="nm-date"   id="nm-date"></div>
+      <div class="nm-league" id="nm-league"></div>
+    </div>
+    <div class="nm-right">
+      <div class="nm-days" id="nm-days"></div>
+      <div class="nm-unit" id="nm-unit"></div>
+    </div>
+  </div>
+  <div class="nm-teams" id="nm-teams"></div>
+</div>
+
 <div id="favoriten-card">
   <div class="favoriten-header-row">
-    <div class="favoriten-header-spacer"></div>
-    <button class="btn btn-favoriten-close" id="btn-favoriten-close">Meine<br>Favoriten<br>auswählen</button>
-    <div class="favoriten-header-spacer"></div>
+    <button class="btn btn-fav-text" id="btn-favoriten-all" onclick="selectAllFavoritenListe()">Alle<br>auswählen</button>
+    <button class="btn btn-fav-text btn-favoriten-close" id="btn-favoriten-close">Speichern</button>
+    <button class="btn btn-fav-text" id="btn-favoriten-clear" onclick="clearFavoritenListe()">Nichts<br>auswählen</button>
   </div>
   <div id="team-btns-container"></div>
 </div>
@@ -1070,20 +1156,85 @@
   </div>
 </div>
 
+
 <script>
 /* ── Konfiguration ─────────────────────────────────────────── */
 /* ── Dynamische Mannschaftsliste ───────────────────────────── */
-const CLUB_NAME      = 'Ochtrup';
-const CLUB_TEAMS_URL = 'https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/clubTeams?club=26831';
-const LS_STATE       = 'spielplan-state';
-const LS_AUSWAHL     = 'spielplan-meine-auswahl';
-const LS_LEAGUES     = 'spielplan-leagues-v6';
-const LS_THEME       = 'spielplan-theme';
-const LS_OVERLAY_DARK  = 'spielplan-overlay-dark';
-const LS_OVERLAY_LIGHT = 'spielplan-overlay-light';
-const LS_STARTS      = 'spielplan-starts';
-const LS_HTML_CACHE  = 'spielplan-html-v1';
-const HTML_CACHE_TTL = 30 * 60 * 1000;
+/* Vereine der Universal-App. „match" ist der Text, an dem die App die eigenen Mannschaften
+   in liga.nu-Tabellen erkennt — er muss eindeutig sein: „Rheine" allein träfe auch Jahn Rheine,
+   „Münster" ein Dutzend Vereine, „Gronau" auch SV Vorwärts Gronau.
+   lk = interne liga.nu-Nummer der LK-Rangliste (steht auf der Vereinsseite, ≠ Vereinsnummer). */
+const CLUBS = [
+  { slug: 'ahaus',         ort: 'Ahaus',        name: 'TC Grün-Weiß Ahaus',        club: 26802, lk: 2010075, match: 'Ahaus' },
+  { slug: 'gronau',        ort: 'Gronau',       name: 'TV Grün-Gold Gronau',       club: 26817, lk: 2012333, match: 'Grün-Gold Gronau' },
+  { slug: 'thc-muenster',  ort: 'Münster',      name: 'THC Münster',               club: 26448, lk: 2024587, match: 'THC Münster' },
+  { slug: 'union-muenster',ort: 'Münster',      name: 'TC Union Münster',          club: 26449, lk: 2024588, match: 'Union Münster' },
+  { slug: 'neuenkirchen',  ort: 'Neuenkirchen', name: 'TC Grün-Weiß Neuenkirchen', club: 26827, lk: 2014950, match: 'Neuenkirchen' },
+  { slug: 'ochtrup',       ort: 'Ochtrup',      name: 'TC 1928 Ochtrup',           club: 26831, lk: 2015325, match: 'Ochtrup' },
+  { slug: 'tc22-rheine',   ort: 'Rheine',       name: 'TC 22 Rheine',              club: 26302, lk: 2016459, match: '22 Rheine' },
+  { slug: 'union-rheine',  ort: 'Rheine',       name: 'TC Union Rheine',           club: 26300, lk: 2016457, match: 'Union Rheine' },
+  { slug: 'wolbeck',       ort: 'Wolbeck',      name: 'TC 66 Wolbeck',             club: 26525, lk: 2034594, match: 'Wolbeck' },
+];
+const LS_CLUB = 'sp-verein';
+/* ?verein=ochtrup in der Adresse wählt den Verein direkt (z. B. für einen geteilten Link) */
+(function() {
+  const q = new URLSearchParams(location.search).get('verein');
+  if (q && CLUBS.some(c => c.slug === q)) localStorage.setItem(LS_CLUB, q);
+})();
+const CLUB = CLUBS.find(c => c.slug === localStorage.getItem(LS_CLUB)) || null;
+const LIGA_BASE      = 'https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/';
+const CLUB_NAME      = CLUB ? CLUB.match : '\u0000';
+const CLUB_TEAMS_URL = LIGA_BASE + 'clubTeams?club=' + (CLUB ? CLUB.club : 0);
+const CLUB_MEETINGS_URL = LIGA_BASE + 'clubMeetings?club=' + (CLUB ? CLUB.club : 0);
+/* Speicher je Verein getrennt (Favoriten, Filter, Cache); Farbschema gilt für alle */
+const LS_PREFIX      = 'sp-' + (CLUB ? CLUB.slug : 'ohne') + '-';
+const CORS_WORKER    = 'https://tennis-cors-proxy.dm8fnwtkwv.workers.dev/?url=';
+const LS_SEASON      = LS_PREFIX + 'saison';
+const LS_STATE_BASE  = LS_PREFIX + 'state';
+const LS_AUSWAHL_BASE= LS_PREFIX + 'meine-auswahl';
+const LS_HTML_BASE   = LS_PREFIX + 'html-v2';
+const LS_LEAGUES     = LS_PREFIX + 'leagues-v7';
+const LS_THEME       = 'sp-theme';
+const LS_OVERLAY_DARK  = 'sp-overlay-dark';
+const LS_OVERLAY_LIGHT = 'sp-overlay-light';
+const LS_STARTS      = 'sp-starts';
+const HTML_CACHE_TTL = 4 * 60 * 60 * 1000;
+
+/* Eingefrorene Saisons: Alle liga.nu-Seiten einer abgeschlossenen Saison liegen als
+   Kopie unter archiv/<ordner>/ (angelegt mit tools/einfrieren.py). Für die aktive
+   Saison liefert fetchURL() diese Kopien statt über die CORS-Proxys zu gehen, und die
+   Saison bleibt im Umschalter, auch wenn liga.nu sie nicht mehr listet.
+   Reihenfolge: älteste zuerst. */
+const ARCHIVE_DIRS = [];
+let _archives     = [];   // { season, dir, clubHtml, files }
+let _archiveFiles = {};   // liga.nu-URL → lokaler Pfad, nur für die aktive Saison
+
+async function loadArchives() {
+  _archives = [];
+  for (const dir of ARCHIVE_DIRS) {
+    try {
+      const idx      = await (await fetch(dir + '/index.json')).json();
+      const clubHtml = await (await fetch(dir + '/' + idx.verein)).text();
+      const files    = {};
+      Object.keys(idx.dateien).forEach(u => { files[u] = dir + '/' + idx.dateien[u]; });
+      _archives.push({ season: idx.saison, dir, clubHtml, files });
+    } catch(e) { console.warn('Archiv nicht ladbar:', dir, e.message); }
+  }
+}
+function archiveFor(season) { return _archives.find(a => a.season === season) || null; }
+
+/* Saison (liga.nu-„championship", z. B. „MS 2026" oder „MS Winter 26/27").
+   Einstellungen, Favoriten und Spielplan-Cache hängen daran, weil beide Saisons
+   eigene Mannschaften haben — und weil liga.nu die Gruppen-Nummern je Saison neu
+   vergibt, dieselbe Nummer also in beiden Saisons eine andere Mannschaft meint.
+   Leer = Saison noch unbekannt (erster Start nach dem Update); dann gelten die
+   bisherigen Schlüssel ohne Saison-Zusatz, applySeason() übernimmt sie einmalig. */
+let SEASON_KEY        = localStorage.getItem(LS_SEASON) || '';
+const _seasonWasUnset = !SEASON_KEY;
+function _seasonSuffix() { return SEASON_KEY ? '::' + SEASON_KEY : ''; }
+let LS_STATE      = LS_STATE_BASE   + _seasonSuffix();
+let LS_AUSWAHL    = LS_AUSWAHL_BASE + _seasonSuffix();
+let LS_HTML_CACHE = LS_HTML_BASE    + _seasonSuffix() + ':';
 
 const LIGHT_THEME_CSS = `
   html, body { background: #f0f2f8; }
@@ -1091,21 +1242,18 @@ const LIGHT_THEME_CSS = `
   #controls-slider { background: #f0f2f8; }
   .header h1 { color: #1a1d2e; }
   .header p { color: #5a5f7a; }
-  .nm-label { color: #fff; border-color: rgba(255,255,255,0.5) !important; }
+  .btn-season { border-color: rgba(90,100,160,0.35); color: #5a5f7a; }
+  .btn-season.on { color: #1a1d2e; border-color: rgba(90,100,160,0.75); background: #c8cde4; }
   .nm-days { color: #fff; }
   .nm-unit { color: #fff; }
   .next-match-box.no-match { background: #c8cde4; border-color: #5060a0; color: #1a1d2e; }
-  .next-match-box.no-match .nm-label { color: #1a1d2e; font-weight: 700; }
   .card::after { background: rgba(240,242,248,var(--overlay-light)); }
   .next-match-box::after { background: rgba(240,242,248,var(--overlay-light)); }
   .nm-league { border-color: rgba(255,255,255,0.5) !important; }
   .nm-league::after { background: rgba(240,242,248,var(--overlay-light)); }
-  .card-tag-row .tag { border-color: rgba(255,255,255,0.5) !important; }
-  .card-tag-row .tag::after { background: rgba(240,242,248,var(--overlay-light)); }
   #team-btns-container .btn { border-color: rgba(255,255,255,0.5) !important; }
   #team-btns-container .btn::after { background: rgba(240,242,248,var(--overlay-light)); }
-  .card-date { color: #ffffff; font-weight: 400; }
-  .card-time { color: #ffffff; font-weight: 400; }
+  .card-note { color: rgba(255,255,255,0.5); }
   .team { color: #ffffff; font-weight: 700; }
   .team.opponent { color: #ffffff; font-weight: 400; }
   .nm-date { color: #ffffff; font-weight: 400; }
@@ -1122,6 +1270,7 @@ const LIGHT_THEME_CSS = `
   #favoriten-card .favoriten-header-row { background: #f0f2f8; }
   #favoriten-card #team-btns-container .btn:not(.on) { color: #3a3f60 !important; border-color: rgba(90,100,160,0.5) !important; }
   #favoriten-card #team-btns-container .btn.on { color: #ffffff !important; }
+  .btn-fav-text { border-color: rgba(90,100,160,0.55); background: rgba(90,100,160,0.1); color: #4a50a0; }
   .btn-favoriten-close { border-color: rgba(90,100,160,0.75); background: #c8cde4; color: #1a1d2e; }
   .btn-refresh-favoriten { border-color: rgba(90,100,160,0.35); color: #3a3f60; }
   #info-view { background: #f0f2f8; }
@@ -1129,13 +1278,14 @@ const LIGHT_THEME_CSS = `
   #settings-view { background: #f0f2f8; border-color: rgba(90,100,160,0.35); box-shadow: 0 20px 60px rgba(20,30,80,0.28), 0 6px 20px rgba(20,30,80,0.15), 0 0 0 1px rgba(90,100,160,0.08); }
   #settings-view .btn-filter { border-color: rgba(90,100,160,0.35); color: #3a3f60; background: transparent; }
   #settings-view .btn-filter.on { border-color: rgba(90,100,160,0.75); background: #c8cde4; color: #1a1d2e; }
-  .settings-close-btn { color: #5a5f7a; }
-  .settings-close-row { border-top-color: rgba(90,100,160,0.15); }
   .btn-info { border-color: #5a6090; color: #3a3f60; background: rgba(60,70,140,0.08); }
   .btn-settings { border-color: #5a6090; color: #3a3f60; background: rgba(60,70,140,0.08); }
+  .btn-refresh-header { border-color: #5a6090; color: #3a3f60; background: rgba(60,70,140,0.08); }
   .settings-section-label { color: #5a5f7a; }
   #settings-overlay-label { color: #1a1d2e; }
   .settings-slider-lbl { color: #3a3f60; }
+  .settings-close-btn { color: #5a5f7a; }
+  .settings-close-row { border-top-color: rgba(90,100,160,0.15); }
   .info-content { color: #1a1d2e; }
   .info-content h2 { color: #0f1020; }
   #donate-banner { background: rgba(0,48,135,0.06); border-color: rgba(0,112,186,0.25); }
@@ -1162,17 +1312,16 @@ const ROLAND_GARROS_CSS = `
   body { color: #ffffff; }
   .header h1 { color: #ffffff; }
   .header p { color: rgba(255,255,255,0.7); }
+  .btn-season { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
+  .btn-season.on { color: #ffffff; border-color: #ffffff; background: rgba(255,255,255,0.15); }
   .next-match-box { background: #143D26; border-color: #ffffff; }
-  .nm-label { color: rgba(255,255,255,0.75) !important; border-color: rgba(255,255,255,0.4) !important; }
   .nm-league { background: #143D26 !important; color: #ffffff !important; border-color: rgba(255,255,255,0.5) !important; }
   .nm-date { color: rgba(255,255,255,0.8) !important; }
   .nm-days { color: #ffffff !important; }
   .nm-unit { color: rgba(255,255,255,0.7) !important; }
   .next-match-box.no-match { background: #143D26; border-color: #ffffff; color: #ffffff; }
-  .next-match-box.no-match .nm-label { color: #ffffff !important; font-weight: 700; }
   .card, .next-match-box { background: #143D26 !important; border-color: rgba(255,255,255,0.6) !important; }
   .card.home-game, #next-match-box.home-game { border-color: rgba(255,255,255,0.6) !important; border-width: 2px; }
-  .card-tag-row .tag { background: #143D26 !important; border-color: rgba(255,255,255,0.5) !important; color: #ffffff !important; }
   .btn { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.5); background: #143D26; }
   .btn.on { color: #ffffff; border-color: #ffffff; }
   .btn-filter { background: #143D26; border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.7); }
@@ -1187,17 +1336,19 @@ const ROLAND_GARROS_CSS = `
   #favoriten-card .favoriten-header-row { background: #642508; }
   #favoriten-card #team-btns-container .btn:not(.on) { color: rgba(255,255,255,0.75) !important; background: #143D26 !important; border-color: rgba(255,255,255,0.35) !important; }
   #favoriten-card #team-btns-container .btn.on { color: #ffffff !important; background: #143D26 !important; border-color: #ffffff !important; font-weight: 700; }
+  .btn-fav-text { border-color: rgba(255,255,255,0.55); background: #143D26; color: rgba(255,255,255,0.8); }
   .btn-favoriten-close { border-color: #ffffff; background: #143D26; color: #ffffff; }
   .btn-refresh-favoriten { background: #143D26; border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.4); }
-  .card::after, .next-match-box::after, .nm-league::after, .card-tag-row .tag::after, #team-btns-container .btn::after { background: transparent; }
+  .card::after, .next-match-box::after, .nm-league::after, #team-btns-container .btn::after { background: transparent; }
   #info-view { background: #642508; }
   #settings-view { background: #642508; border-color: rgba(255,255,255,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.75), 0 6px 20px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.07); }
-  .settings-close-btn { color: rgba(255,255,255,0.45); }
-  .settings-close-row { border-top-color: rgba(255,255,255,0.12); }
   .btn-info { border-color: rgba(255,255,255,0.5); color: #ffffff; background: rgba(255,255,255,0.1); }
   .btn-settings { border-color: rgba(255,255,255,0.5); color: #ffffff; background: rgba(255,255,255,0.1); }
+  .btn-refresh-header { border-color: rgba(255,255,255,0.5); color: #ffffff; background: rgba(255,255,255,0.1); }
   .settings-section-label { color: rgba(255,255,255,0.65); }
   #settings-overlay-label { color: #ffffff; }
+  .settings-close-btn { color: rgba(255,255,255,0.45); }
+  .settings-close-row { border-top-color: rgba(255,255,255,0.12); }
   #info-donate .btn-donate-main { background: #143D26; color: #ffffff; border: 1px solid rgba(255,255,255,0.5); }
   .info-content { color: #ffffff; }
   .info-content h2 { color: #ffffff; }
@@ -1217,6 +1368,7 @@ const ROLAND_GARROS_CSS = `
   #pwa-hint-banner { background: rgba(0,0,0,0.12); border-color: rgba(255,255,255,0.2); color: #ffffff; }
   .pwa-hint-link { color: rgba(255,255,255,0.9); }
   .pwa-hint-close { color: rgba(255,255,255,0.7); }
+  .card-note { color: rgba(255,255,255,0.45); }
   .status-msg { color: rgba(255,255,255,0.6); }
   .loading-row { color: rgba(255,255,255,0.9); }
   .update-info { color: rgba(255,255,255,0.4); }
@@ -1246,8 +1398,8 @@ function unlockBodyScroll() {
 }
 
 function initOverlays() {
-  const dark  = parseInt(localStorage.getItem(LS_OVERLAY_DARK)  || '30', 10);
-  const light = parseInt(localStorage.getItem(LS_OVERLAY_LIGHT) || '30', 10);
+  const dark  = parseInt(localStorage.getItem(LS_OVERLAY_DARK)  || '10', 10);
+  const light = parseInt(localStorage.getItem(LS_OVERLAY_LIGHT) || '10', 10);
   document.documentElement.style.setProperty('--overlay-dark',  (dark  / 100).toFixed(2));
   document.documentElement.style.setProperty('--overlay-light', (light / 100).toFixed(2));
 }
@@ -1281,8 +1433,8 @@ function updateSliderForTheme() {
   if (theme === 'roland-garros') { section.style.display = 'none'; return; }
   section.style.display = '';
   const stored = theme === 'dark'
-    ? parseInt(localStorage.getItem(LS_OVERLAY_DARK)  || '30', 10)
-    : parseInt(localStorage.getItem(LS_OVERLAY_LIGHT) || '30', 10);
+    ? parseInt(localStorage.getItem(LS_OVERLAY_DARK)  || '10', 10)
+    : parseInt(localStorage.getItem(LS_OVERLAY_LIGHT) || '10', 10);
   const lbl = document.getElementById('settings-overlay-label');
   if (lbl) lbl.textContent = (stored * 2) + ' %';
   updateOverlaySliderUI(stored);
@@ -1527,7 +1679,57 @@ function teamColor(label, catIdx) {
   return PALETTE_JUGEND[catIdx % PALETTE_JUGEND.length];
 }
 
-let LEAGUES = [];
+let LEAGUES     = [];   // Mannschaften der gewählten Saison
+let ALL_LEAGUES = [];   // alle Mannschaften: eingefrorene Saisons + alle Saisons der Vereinsseite
+let SEASONS     = [];   // Saison-Schlüssel in der Reihenfolge der Vereinsseite
+
+/* liga.nu-„championship" → Saison-Schlüssel.
+   Viele Vereine spielen gleichzeitig in mehreren Spielbetrieben (Regionalliga „RLW W 2026/2027",
+   Verband „WTV Winter 26/27", Bezirk „MS Winter 26/27", Pokal „WTV VP 2026") — alle
+   einer Saison sollen unter einem Knopf stehen. Daher: „Winter 26/27" bzw. „Sommer 2026". */
+function _decodeChampionship(raw) {
+  let s;
+  try { s = decodeURIComponent(raw.replace(/\+/g, ' ')); }
+  catch(e) { s = raw.replace(/\+/g, ' '); }
+  const w = s.match(/\bW(?:inter)?\s+(\d{4}|\d{2})\s*\/\s*(\d{4}|\d{2})/i);
+  if (w) return 'Winter ' + w[1].slice(-2) + '/' + w[2].slice(-2);
+  const y = s.match(/\b(20\d{2})\b/);
+  if (y) return 'Sommer ' + y[1];
+  return s;
+}
+
+/* Saison-Schlüssel → Beschriftung für den Umschalter */
+function seasonLabel(key) {
+  const w = key.match(/Winter\s+(\d{2})\s*\/\s*(\d{2})/i);
+  if (w) return 'Winter 20' + w[1] + '/20' + w[2];
+  const y = key.match(/(\d{4})/);
+  if (y) return 'Sommer ' + y[1];
+  return key;
+}
+
+/* Saison-Schlüssel → Zahl für die zeitliche Reihenfolge: Sommer eines Jahres vor dem
+   Winter, der im selben Jahr beginnt (Sommer 2026 vor Winter 2026/27). */
+function seasonOrder(key) {
+  const w = key.match(/Winter\s+(\d{2})\s*\/\s*(\d{2})/i);
+  if (w) return (2000 + +w[1]) * 2 + 1;
+  const y = key.match(/(\d{4})/);
+  return y ? +y[1] * 2 : 0;
+}
+
+/* Saison des nächsten anstehenden Spiels. liga.nu listet auf der Begegnungs-Seite die
+   kommenden Spiele nach Datum, jede Zeile mit ihrer Saison — die erste ist die laufende.
+   Wird nur für die Vorauswahl beim allerersten Start gebraucht. */
+let _detectedSeason = '';
+async function detectCurrentSeason() {
+  try {
+    const decoded = (await fetchURL(CLUB_MEETINGS_URL)).replace(/&amp;/g, '&');
+    /* Erst ab der Ergebnistabelle suchen — davor steht ein Auswahlformular mit allen Saisons */
+    const start = decoded.indexOf('result-set');
+    if (start < 0) return '';
+    const m = decoded.slice(start).match(/[?&]championship=([^&"]*)/);
+    return m ? _decodeChampionship(m[1]) : '';
+  } catch(e) { return ''; }
+}
 
 function parseClubTeams(html) {
   const decoded = html.replace(/&amp;/g, '&');
@@ -1540,13 +1742,19 @@ function parseClubTeams(html) {
     const label    = m[1].trim().replace(/grüner ball/gi, 'Gr. Ball');
     const relHref  = m[2];
     const group    = m[3];
+    const champRaw = (relHref.match(/[?&]championship=([^&"]*)/) || ['',''])[1];
+    const season   = _decodeChampionship(champRaw);
+    /* Gruppen-Nummern vergibt liga.nu je Spielbetrieb neu (RLW/WTV/MS haben alle eine
+       „Gruppe 3") — das Kürzel des Spielbetriebs gehört deshalb mit in die Kennung. */
+    const champTag = (champRaw.match(/^[A-Za-z0-9]+/) || [''])[0].toLowerCase();
+    const teamId   = 'g' + group + (champTag ? '-' + champTag : '');
     const leagueLabel = m[4].trim().replace(/\s+Gr\.\s*\d+.*$/i, '').trim();
-    const liPart      = leagueLabel.match(/((?:Kreis|Bezirks|Münsterland|Verbands|Landes|Westfalen|Generali)\S*.*)/i);
+    const liPart      = leagueLabel.match(/((?:Kreis|Bezirks|Münsterland|Verbands|Landes|Westfalen|Generali|Regional)\S*.*)/i);
     const sublabel    = liPart ? liPart[1].trim() : leagueLabel;
-    if (seenGroups.has(group)) continue;
-    seenGroups.add(group);
+    if (seenGroups.has(season + '|' + teamId)) continue;
+    seenGroups.add(season + '|' + teamId);
     const url = relHref.startsWith('http') ? relHref : 'https://wtv.liga.nu' + relHref;
-    results.push({ team: 'g' + group, label, sublabel, leagueLabel, url, color: [128, 128, 128] });
+    results.push({ team: teamId, season, label, sublabel, leagueLabel, url, color: [128, 128, 128] });
   }
   return results;
 }
@@ -1567,16 +1775,40 @@ function buildTeamCSS(leagues, theme) {
     const bright  = '#' + [br,bg,bb].map(x=>Math.min(255,x).toString(16).padStart(2,'0')).join('');
     const cardBg  = toHex(blend(base, [r,g,b], 0.38));
     const border  = toHex(blend(base, [r,g,b], 0.72));
-    const tagBg   = toHex(blend(base, [r,g,b], 0.55));
     const dimText = '#' + blend([144,149,176],[r,g,b],0.45).map(x=>x.toString(16).padStart(2,'0')).join('');
     const btnBg  = `rgba(${r},${g},${b},0.07)`;
     const btnBdr = `rgba(${r},${g},${b},0.28)`;
     const onBg   = toHex(blend(base,[r,g,b],0.32));
     return `.btn-${l.team}{border-color:${btnBdr};background:${btnBg};color:${dimText};}` +
            `.btn-${l.team}.on{border-color:${bright};background:${onBg};color:#fff;}` +
-           `.card.${l.team},.next-match-box.${l.team}{background:${cardBg};border-color:${border};}` +
-           `.tag-${l.team}{background:${tagBg};color:#fff;font-weight:700;border:1px solid ${border};}`;
+           `.card.${l.team},.next-match-box.${l.team}{background:${cardBg};border-color:${border};}`;
   }).join('\n');
+}
+
+/* Mannschaften benennen: Hat der Verein in derselben Altersklasse mehrere Mannschaften
+   (liga.nu: „Junioren U18 2er 1" und „… 2er 2"), bekommen sie römische Ziffern:
+   „Junioren U18 2er I", „Junioren U18 2er II". Sonst bleibt der Name ohne Ziffer.
+   Gleiche Altersklasse = Name ohne Nummer und ohne 2er/4er/6er (U15 4er 1 + U15 2er 2 → I/II). */
+function _teamNr(l)   { const m = (l.label || '').match(/\s(\d+)$/); return m ? +m[1] : 0; }
+function _teamFull(l) { return (l.label || '').replace(/\s+\d+$/, '').trim(); }
+function _teamBase(l) { return _teamFull(l).replace(/\s+\d+er\b/i, '').trim(); }
+function _roman(n)    { return ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'][n] || String(n); }
+function teamShortName(league) {
+  const full = _teamFull(league), nr = _teamNr(league);
+  if (!nr) return full;
+  const same = (LEAGUES || []).filter(l => l.season === league.season && _teamBase(l) === _teamBase(league));
+  return same.length > 1 ? full + ' ' + _roman(nr) : full;
+}
+/* Spielklasse für Karten, „Nächstes Spiel" und Spielbericht — mit Ziffer, falls nötig:
+   „Junioren U18 2er Bezirksklasse" → „Junioren U18 2er II Bezirksklasse". */
+function leagueDisplayLabel(league) {
+  const ll = league.leagueLabel || league.label;
+  const full = _teamFull(league), short = teamShortName(league);
+  if (short === full) return ll;
+  if (ll.startsWith(full)) return short + ll.slice(full.length);
+  // Spielklasse ohne 2er/4er (Winter: „Herren 40 4er 2" spielt „Herren 40 Bezirksklasse")
+  const base = _teamBase(league);
+  return ll.startsWith(base) ? short + ll.slice(base.length) : ll + ' (' + short + ')';
 }
 
 function formatTeamLabel(label) {
@@ -1602,34 +1834,125 @@ function buildTeamButtons() {
     btn.addEventListener('click', e => { if (!e.target.classList.contains('team-btn-rank')) toggleTeam(l.team); });
     container.appendChild(btn);
   });
-  const refresh = document.createElement('button');
-  refresh.className   = 'btn-refresh-favoriten';
-  refresh.id          = 'btn-refresh';
-  refresh.title       = 'Neu laden';
-  refresh.textContent = '↺';
-  refresh.addEventListener('click', refreshData);
-  container.appendChild(refresh);
 }
 
 async function initLeagues() {
-  try {
-    const cached = JSON.parse(localStorage.getItem(LS_LEAGUES) || 'null');
-    if (cached && cached.ts && Date.now() - cached.ts < 24 * 3600 * 1000 && cached.leagues.length) {
-      LEAGUES = cached.leagues;
-      applyLeagues();
-      return;
+  await loadArchives();
+  let cached = null;
+  try { cached = JSON.parse(localStorage.getItem(LS_LEAGUES) || 'null'); } catch(e) {}
+  if (cached && cached.ts && Date.now() - cached.ts < 24 * 3600 * 1000 && cached.leagues && cached.leagues.length) {
+    ALL_LEAGUES = cached.leagues;
+  } else {
+    try {
+      const html = await fetchURL(CLUB_TEAMS_URL);
+      ALL_LEAGUES = parseClubTeams(html);
+      if (ALL_LEAGUES.length) {
+        localStorage.setItem(LS_LEAGUES, JSON.stringify({ ts: Date.now(), leagues: ALL_LEAGUES }));
+      }
+    } catch(e) {
+      console.warn('Mannschaftsliste konnte nicht geladen werden:', e.message);
     }
-  } catch(e) {}
-  try {
-    const html = await fetchURL(CLUB_TEAMS_URL);
-    LEAGUES = parseClubTeams(html);
-    if (LEAGUES.length) {
-      localStorage.setItem(LS_LEAGUES, JSON.stringify({ ts: Date.now(), leagues: LEAGUES }));
-    }
-  } catch(e) {
-    console.warn('Mannschaftsliste konnte nicht geladen werden:', e.message);
   }
+  /* Eingefrorene Saisons vorn anfügen — sie sind älter als alles, was liga.nu noch
+     listet. Führt die Vereinsseite eine Saison selbst noch auf, gilt deren Liste. */
+  const archived = [];
+  _archives.forEach(a => {
+    if (ALL_LEAGUES.some(l => l.season === a.season)) return;
+    archived.push(...parseClubTeams(a.clubHtml).filter(l => l.season === a.season));
+  });
+  ALL_LEAGUES = [...archived, ...ALL_LEAGUES];
+  if (!SEASON_KEY && ALL_LEAGUES.length) _detectedSeason = await detectCurrentSeason();
+  applySeason();
   applyLeagues();
+}
+
+/* Gewählte Saison festlegen und LEAGUES darauf einschränken.
+   Die Vereinsseite listet in der Übergangszeit Sommer- und Winterrunde zusammen —
+   ohne diese Trennung mischen sich die Mannschaften beider Saisons. */
+function applySeason() {
+  SEASONS = [];
+  ALL_LEAGUES.forEach(l => { if (l.season && SEASONS.indexOf(l.season) === -1) SEASONS.push(l.season); });
+  /* Nur die neueste Saison und die direkt davor — liga.nu führt manchmal noch Mannschaften
+     aus älteren Runden (z. B. Union Münster: Regionalliga Winter 25/26). */
+  const _maxOrder = Math.max(0, ...SEASONS.map(seasonOrder));
+  SEASONS = SEASONS.filter(k => seasonOrder(k) >= _maxOrder - 1);
+
+  /* Beim Öffnen gilt immer die neueste Saison. Ein Wechsel per Umschalter lädt die Seite
+     neu und hält nur bis zum Schließen der App (sessionStorage übersteht das Neuladen). */
+  const newest     = SEASONS.slice().sort((a, b) => seasonOrder(a) - seasonOrder(b)).pop();
+  const keepChoice = sessionStorage.getItem(LS_SEASON) === SEASON_KEY;
+  if (SEASONS.length && (SEASONS.indexOf(SEASON_KEY) === -1 || (!keepChoice && SEASON_KEY !== newest))) {
+    /* Die bisherigen (saisonlosen) Einstellungen stammen aus der Zeit vor der Umschaltung
+       und gehören zur ältesten gelisteten Saison — dort bleiben sie erhalten, auch wenn
+       die App gleich mit der laufenden Saison startet. */
+    if (_seasonWasUnset) migrateOldSettings(SEASONS[0]);
+    setSeasonKey(SEASONS.indexOf(_detectedSeason) !== -1 ? _detectedSeason : newest);
+    /* Filter, Mannschaftsauswahl und Favoriten hängen an der Saison — nach dem
+       Umstellen der Schlüssel neu einlesen, sonst gälte hier der Stand der anderen Saison. */
+    const st  = loadState();
+    showPast   = st.showPast;
+    showFuture = st.showFuture;
+    showHome   = st.showHome;
+    showAway   = st.showAway;
+    showTeams  = st.showTeams;
+    selectMode = st.selectMode;
+    meineAuswahlActive = (selectMode === 'meine');
+  }
+  LEAGUES = SEASON_KEY ? ALL_LEAGUES.filter(l => l.season === SEASON_KEY) : ALL_LEAGUES.slice();
+  _archiveFiles = (archiveFor(SEASON_KEY) || { files: {} }).files;
+  buildSeasonButtons();
+}
+
+/* Aktive Saison setzen — dabei hängen Einstellungen, Favoriten und Spielplan-Cache um.
+   Beim allerersten Mal werden die bisherigen (saisonlosen) Einstellungen übernommen. */
+function migrateOldSettings(key) {
+  const suffix = '::' + key;
+  [LS_STATE_BASE, LS_AUSWAHL_BASE].forEach(base => {
+    const alt = localStorage.getItem(base);
+    if (alt !== null && localStorage.getItem(base + suffix) === null) localStorage.setItem(base + suffix, alt);
+  });
+}
+
+function setSeasonKey(key) {
+  SEASON_KEY = key;
+  localStorage.setItem(LS_SEASON, key);
+  const suffix = _seasonSuffix();
+  LS_STATE      = LS_STATE_BASE   + suffix;
+  LS_AUSWAHL    = LS_AUSWAHL_BASE + suffix;
+  LS_HTML_CACHE = LS_HTML_BASE    + suffix + ':';
+}
+
+function buildSeasonButtons() {
+  const row = document.getElementById('season-row');
+  const sub = document.getElementById('header-sub');
+  if (!row) return;
+  row.innerHTML = '';
+  /* Nur eine Saison gemeldet → kein Umschalter nötig, Saison steht in der Kopfzeile */
+  if (SEASONS.length < 2) {
+    setHeaderSub(SEASON_KEY ? seasonLabel(SEASON_KEY) : '');
+    updateHeaderH();
+    return;
+  }
+  setHeaderSub('');
+  /* Immer zeitlich, ältere Saison links — liga.nu ändert seine Reihenfolge sonst je nach Stand */
+  SEASONS.slice().sort((a, b) => seasonOrder(a) - seasonOrder(b)).forEach(key => {
+    const btn = document.createElement('button');
+    btn.className   = 'btn-season' + (key === SEASON_KEY ? ' on' : '');
+    btn.textContent = seasonLabel(key);
+    btn.addEventListener('click', () => switchSeason(key));
+    row.appendChild(btn);
+  });
+  updateHeaderH();
+}
+
+/* Saisonwechsel lädt die Seite neu: Spielplan, Favoriten, Statistiken und Cache
+   hängen alle an der Saison — ein Neustart ist der sicherste Weg, nichts zu vermischen. */
+function switchSeason(key) {
+  if (key === SEASON_KEY) return;
+  saveState();
+  localStorage.setItem(LS_SEASON, key);
+  sessionStorage.setItem(LS_SEASON, key);
+  location.reload();
 }
 
 function sortLeagues(leagues) {
@@ -1703,7 +2026,8 @@ let allMatches  = [];
 function loadState() {
   const raw = localStorage.getItem(LS_STATE);
   if (raw === null) {
-    // Erster Start: AKTUELL + HEIM + AUSWÄRTS aktiv, alle Mannschaften, MEINE AUSWAHL leer
+    // Erster Start: Alle Mannschaften aktiv, Favoritenliste leer
+    localStorage.removeItem(LS_AUSWAHL);
     return { showPast: false, showFuture: true, showHome: true, showAway: true, showTeams: {}, selectMode: 'all' };
   }
   try {
@@ -1783,6 +2107,7 @@ let showAway    = _state.showAway;
 let showTeams   = _state.showTeams;
 let selectMode  = _state.selectMode;
 const leagueHtml = {};
+const _reportCache = {}; // Session-Cache für Spielberichte (reportUrl → HTML)
 
 function getCachedHtml(key) {
   try {
@@ -1792,15 +2117,32 @@ function getCachedHtml(key) {
     return Date.now() - ts < HTML_CACHE_TTL ? html : null;
   } catch { return null; }
 }
+function getStaleCachedHtml(key) {
+  try {
+    const raw = localStorage.getItem(LS_HTML_CACHE + key);
+    if (!raw) return null;
+    const { html } = JSON.parse(raw);
+    return html || null;
+  } catch { return null; }
+}
 function setCachedHtml(key, html) {
   try { localStorage.setItem(LS_HTML_CACHE + key, JSON.stringify({ ts: Date.now(), html })); } catch {}
 }
 function clearHtmlCache() {
-  Object.keys(localStorage).filter(k => k.startsWith(LS_HTML_CACHE)).forEach(k => localStorage.removeItem(k));
+  Object.keys(localStorage).filter(k => k.startsWith(LS_HTML_BASE)).forEach(k => localStorage.removeItem(k));
 }
 
 /* ── Fetch ─────────────────────────────────────────────────── */
 async function fetchURL(targetUrl) {
+  /* Eingefrorene Saison: lokale Kopie statt Proxy. Schlägt sie fehl, geht es wie gewohnt weiter. */
+  const local = _archiveFiles[targetUrl];
+  if (local) {
+    try {
+      const res = await fetch(local);
+      if (res.ok) return await res.text();
+    } catch {}
+  }
+
   const encoded = encodeURIComponent(targetUrl);
 
   function tryProxy(url, isJson, ctrl, timeoutMs) {
@@ -1822,25 +2164,36 @@ async function fetchURL(targetUrl) {
       .catch(e => { clearTimeout(timer); throw e; });
   }
 
-  /* Runde 1: drei Proxies gleichzeitig – erster Treffer gewinnt */
-  const c1 = new AbortController(), c2 = new AbortController(), c3 = new AbortController();
+  /* Runde 1: eigener Worker (primär) + codetabs (backup) */
+  const c1 = new AbortController(), c2 = new AbortController();
   try {
     const result = await Promise.any([
-      tryProxy('https://api.allorigins.win/get?url=' + encoded,      true,  c1, 8000),
-      tryProxy('https://api.codetabs.com/v1/proxy?quest=' + encoded, false, c2, 8000),
-      tryProxy('https://corsproxy.io/?' + encoded,                   false, c3, 8000),
+      tryProxy(CORS_WORKER + encoded,                                  false, c1, 8000),
+      tryProxy('https://api.codetabs.com/v1/proxy?quest=' + encoded,  false, c2, 8000),
     ]);
-    c1.abort(); c2.abort(); c3.abort();
+    c1.abort(); c2.abort();
     return result;
   } catch {}
 
-  /* Runde 2: letzter Fallback mit allorigins/raw */
-  const c4 = new AbortController();
+  /* Runde 2: nochmal mit längeren Timeouts */
+  const c3 = new AbortController(), c4 = new AbortController();
   try {
-    return await tryProxy('https://api.allorigins.win/raw?url=' + encoded, false, c4, 10000);
+    return await Promise.any([
+      tryProxy(CORS_WORKER + encoded,                                  false, c3, 15000),
+      tryProxy('https://api.codetabs.com/v1/proxy?quest=' + encoded,  false, c4, 15000),
+    ]);
   } catch(e) {
     throw new Error('Alle Proxies fehlgeschlagen (' + (e.message || '') + ')');
   }
+}
+
+/* Spielbericht laden — abgeschlossene Begegnungen werden im Session-Cache gehalten
+   (Statistik + erneutes Öffnen sofort), laufende immer frisch geladen */
+async function fetchReport(reportUrl, useCache) {
+  if (useCache && _reportCache[reportUrl]) return _reportCache[reportUrl];
+  const html = await fetchURL(reportUrl);
+  if (useCache) _reportCache[reportUrl] = html;
+  return html;
 }
 
 /* ── Parse ─────────────────────────────────────────────────── */
@@ -1938,7 +2291,7 @@ function parseLeague(html, league) {
       homeTeam, awayTeam, result, note, reportUrl,
       isHome: homeTeam.includes(CLUB_NAME),
       team:   league.team,
-      label:  league.leagueLabel || league.label
+      label:  leagueDisplayLabel(league)
     });
   }
 
@@ -2011,7 +2364,7 @@ function parseLeagueAll(html, league) {
       homeTeam, awayTeam, result, reportUrl,
       isHome: isClubHome,
       isClubMatch: isClubHome || isClubAway,
-      team: league.team, label: league.leagueLabel || league.label
+      team: league.team, label: leagueDisplayLabel(league)
     });
   }
   return matches;
@@ -2082,20 +2435,9 @@ async function loadAllData(forceRefresh = false) {
     mc.style.opacity = '0';
     mc.style.pointerEvents = 'none';
     document.getElementById('controls-slider').style.pointerEvents = 'none';
-    nmBox.classList.add('no-match');
     nmBox.style.transition = '';
-    nmBox.style.display = 'flex';
     nmBox.style.opacity = '1';
-    document.getElementById('nm-league').textContent = '';
-    document.getElementById('nm-league').className   = 'nm-league';
-    document.getElementById('nm-date').innerHTML     = '';
-    document.getElementById('nm-days').textContent   = '';
-    document.getElementById('nm-unit').textContent   = '';
-    const nmTeams = document.getElementById('nm-teams');
-    nmTeams.style.flexDirection  = 'column';
-    nmTeams.style.justifyContent = 'center';
-    nmTeams.style.marginTop      = '-3rem';
-    nmTeams.innerHTML = '<div class="loading-row" style="justify-content:center"><div class="spinner"></div>Spieldaten werden geladen …</div>';
+    showNmMessage('<div class="loading-row" style="justify-content:center"><div class="spinner"></div>Spieldaten werden geladen …</div>');
   }
 
   const hadCache = allMatches.length > 0;
@@ -2121,12 +2463,26 @@ async function loadAllData(forceRefresh = false) {
         await new Promise(r => setTimeout(r, 1200 * attempt));
         return loadLeague(league, attempt + 1);
       }
-      errors.push(league.label + ': ' + e.message);
-      league.fetchError = true;
-      const rankEl = document.getElementById('rank-' + league.team);
-      if (rankEl && !leagueHtml[league.team]) {
-        rankEl.textContent = '⚠ neu laden';
-        rankEl.classList.add('rank-error');
+      const stale = !leagueHtml[league.team] && getStaleCachedHtml(league.team);
+      if (stale) {
+        leagueHtml[league.team] = stale;
+        league.rank = extractClubRank(stale);
+        const rankEl = document.getElementById('rank-' + league.team);
+        if (rankEl && league.rank) rankEl.textContent = 'Rang ' + league.rank;
+        allMatches = allMatches.filter(m => m.team !== league.team);
+        allMatches = [...allMatches, ...parseLeague(stale, league)].sort((a, b) => a.date - b.date);
+        mc.style.opacity = '1';
+        mc.style.pointerEvents = '';
+        document.getElementById('controls-slider').style.pointerEvents = '';
+        renderNextMatch(); renderMatches();
+      } else {
+        errors.push(league.label + ': ' + e.message);
+        league.fetchError = true;
+        const rankEl = document.getElementById('rank-' + league.team);
+        if (rankEl && !leagueHtml[league.team]) {
+          rankEl.textContent = '⚠ neu laden';
+          rankEl.classList.add('rank-error');
+        }
       }
     }
   }
@@ -2220,28 +2576,34 @@ async function retryTeam(league) {
 }
 
 /* ── Nächstes Spiel ────────────────────────────────────────── */
-let _homeBlinkTimer = null;
 let _lastDateStr = new Date().toDateString();
+
+/* Nächstes-Spiel-Box als reine Hinweiskarte anzeigen (kein Spiel / lädt) */
+function showNmMessage(html) {
+  const box = document.getElementById('next-match-box');
+  document.getElementById('nm-top-row').style.display = 'none';
+  document.getElementById('nm-date').innerHTML = '';
+  const nl = document.getElementById('nm-league');
+  nl.textContent = ''; nl.className = 'nm-league';
+  const nd = document.getElementById('nm-days');
+  nd.textContent = ''; delete nd.dataset.matchtime;
+  document.getElementById('nm-unit').textContent = '';
+  document.getElementById('nm-teams').innerHTML = html;
+  box.classList.remove('home-game');
+  LEAGUES.forEach(l => box.classList.remove(l.team));
+  box.classList.add('no-match');
+  box.style.display = 'flex';
+}
 
 function renderNextMatch() {
   const today = new Date(); today.setHours(0, 0, 0, 0);
 
   const box = document.getElementById('next-match-box');
+  /* „Vorbei" aktiv → kein nächstes Spiel anzeigen */
+  if (!showFuture) { box.style.display = 'none'; return; }
   const noTeams = LEAGUES.every(l => !showTeams[l.team]);
   if (noTeams) {
-    document.getElementById('nm-date').innerHTML     = '';
-    document.getElementById('nm-teams').innerHTML    = '<span style="font-size:1.05rem;text-align:center;width:100%;display:block">Keine Mannschaften ausgewählt</span>';
-    const nl = document.getElementById('nm-league');
-    nl.textContent = ''; nl.className = 'nm-league';
-    const nmDays0 = document.getElementById('nm-days');
-    nmDays0.textContent = ''; delete nmDays0.dataset.nmMatchtime;
-    document.getElementById('nm-unit').textContent   = '';
-    const nmT = document.getElementById('nm-teams');
-    nmT.style.flexDirection = 'column'; nmT.style.justifyContent = 'center'; nmT.style.marginTop = '-3rem';
-    box.classList.remove('home-game');
-    LEAGUES.forEach(l => box.classList.remove(l.team));
-    box.classList.add('no-match');
-    box.style.display = 'flex';
+    showNmMessage('<span style="font-size:1.05rem;text-align:center;width:100%;display:block">Keine Mannschaften ausgewählt</span>');
     return;
   }
 
@@ -2250,83 +2612,28 @@ function renderNextMatch() {
     return d >= today && !isMatchOver(m) && showFuture && showTeams[m.team] && (m.isHome ? showHome : showAway);
   });
   if (!next) {
-    document.getElementById('nm-date').innerHTML  = '';
-    document.getElementById('nm-teams').innerHTML =
-      '<span style="font-size:1.05rem;text-align:center;width:100%;display:block">Bei dieser Auswahl gibt es keine aktuellen Spiele' +
-      (!showFuture ? '<br><span style="font-size:0.85rem;opacity:0.6">(Button „AKTUELL" nicht aktiv)</span>' : '') +
-      '</span>';
-    const nl2 = document.getElementById('nm-league');
-    nl2.textContent = ''; nl2.className = 'nm-league';
-    const nmDays2 = document.getElementById('nm-days');
-    nmDays2.textContent = ''; delete nmDays2.dataset.nmMatchtime;
-    document.getElementById('nm-unit').textContent = '';
-    const nmT2 = document.getElementById('nm-teams');
-    nmT2.style.flexDirection = 'column'; nmT2.style.justifyContent = 'center'; nmT2.style.marginTop = '-3rem';
-    box.classList.remove('home-game');
-    LEAGUES.forEach(l => box.classList.remove(l.team));
-    box.classList.add('no-match');
-    box.style.display = 'flex';
+    showNmMessage('<span style="font-size:1.05rem;text-align:center;width:100%;display:block">Bei dieser Auswahl gibt es keine aktuellen Spiele</span>');
     return;
   }
 
-  const nmTr = document.getElementById('nm-teams');
-  nmTr.style.flexDirection = ''; nmTr.style.justifyContent = ''; nmTr.style.marginTop = '';
+  document.getElementById('nm-top-row').style.display = '';
   box.classList.remove('no-match');
   LEAGUES.forEach(l => box.classList.remove(l.team));
   box.classList.add(next.team);
   box.classList.toggle('home-game', next.isHome);
-  clearTimeout(_homeBlinkTimer);
-  const homeAwaySpan = next.isHome
-    ? '<span id="nm-heimspiel" style="color:#fff;font-weight:700" class="blink">Heimspiel</span>'
-    : '<span>Auswärts</span>';
+  const homeAwaySpan = next.isHome ? '<span class="nm-heim">Heimspiel</span>' : '<span>Auswärts</span>';
   document.getElementById('nm-date').innerHTML =
     WEEKDAYS[next.date.getDay()] + ' ' + next.dateStr + ' · ' + next.timeStr + ' Uhr · ' + homeAwaySpan;
-  if (next.isHome) {
-    _homeBlinkTimer = setTimeout(function() {
-      const el = document.getElementById('nm-heimspiel');
-      if (el) el.classList.remove('blink');
-    }, 5000);
-  }
-  const nmOwnStyle = 'font-weight:700;color:#fff;text-transform:uppercase';
-  const nmOppStyle = 'font-weight:400;color:#c0c4d8;text-transform:uppercase';
-  document.getElementById('nm-teams').innerHTML =
-    `<div class="nm-match-teams">` +
-    `<span style="${next.isHome ? nmOwnStyle : nmOppStyle}">${esc(next.homeTeam)}</span>` +
-    `<span style="font-size:0.85rem;color:#c8cde4;font-weight:600;margin:0 5px">vs.</span>` +
-    `<span style="${next.isHome ? nmOppStyle : nmOwnStyle}">${esc(next.awayTeam)}</span>` +
-    `</div>` +
+  document.getElementById('nm-teams').innerHTML = matchTeamsHtml(next) +
     `<button class="btn-tabelle" onclick="event.stopPropagation();showTable('${next.team}')">Tabelle</button>`;
   const nmLeague = document.getElementById('nm-league');
   nmLeague.textContent = next.label;
   nmLeague.className = 'nm-league btn-' + next.team + ' on';
 
-  const diff  = Math.round((new Date(next.date).setHours(0,0,0,0) - today) / 86400000);
-  const dEl   = document.getElementById('nm-days');
-  const uEl   = document.getElementById('nm-unit');
-
-  if (diff === 0) {
-    dEl.className = 'nm-days today';
-    const nmMt = matchDateTime(next.date, next.timeStr);
-    const nmDur = matchDurationMs(next);
-    uEl.textContent = '';
-    const ms0 = nmMt.getTime() - Date.now();
-    if (ms0 > 0) {
-      dEl.dataset.nmMatchtime = nmMt.getTime();
-      dEl.dataset.nmDuration = nmDur;
-      delete dEl.dataset.nmExpiry;
-      const h0 = Math.floor(ms0/3600000), m0 = Math.floor((ms0%3600000)/60000), s0 = Math.floor((ms0%60000)/1000);
-      dEl.textContent = String(h0).padStart(2,'0')+':'+String(m0).padStart(2,'0')+':'+String(s0).padStart(2,'0');
-    } else {
-      dEl.textContent = 'läuft'; dEl.classList.add('blink');
-      dEl.dataset.nmExpiry = (nmMt.getTime() + nmDur).toString();
-      delete dEl.dataset.nmMatchtime;
-      delete dEl.dataset.nmDuration;
-    }
-  } else {
-    delete dEl.dataset.nmMatchtime;
-    dEl.textContent = diff;    dEl.className = 'nm-days';
-    uEl.textContent = diff === 1 ? 'Tag' : 'Tage';
-  }
+  const dEl = document.getElementById('nm-days');
+  dEl.dataset.matchtime     = matchDateTime(next.date, next.timeStr).getTime();
+  dEl.dataset.matchduration = matchDurationMs(next);
+  applyCountdown(dEl, document.getElementById('nm-unit'));
 
   document.getElementById('next-match-box').style.display = 'flex';
 }
@@ -2339,23 +2646,41 @@ function matchDateTime(date, timeStr) {
   return dt;
 }
 
-function countdownLabel(date, timeStr, label) {
+/* Mannschaften-Zeile: eigene Mannschaft fett, Gegner normal */
+function matchTeamsHtml(m) {
+  const homeSpan = `<span class="team${m.isHome ? '' : ' opponent'}">${esc(m.homeTeam)}</span>`;
+  const awaySpan = `<span class="team${m.isHome ? ' opponent' : ''}">${esc(m.awayTeam)}</span>`;
+  return `<div class="nm-match-teams">${homeSpan}<span class="vs">vs.</span>${awaySpan}</div>`;
+}
+
+/* Tageszahl bzw. Countdown in ein nm-days/nm-unit-Paar schreiben.
+   Liest Spielbeginn/-dauer aus data-matchtime/data-matchduration.
+   Gibt true zurück, wenn das Spiel inzwischen vorbei ist (→ neu rendern). */
+function applyCountdown(dEl, uEl) {
+  const mt  = +dEl.dataset.matchtime;
+  const dur = parseInt(dEl.dataset.matchduration || '21600000', 10);
   const today = new Date(); today.setHours(0, 0, 0, 0);
-  const matchDay = new Date(date); matchDay.setHours(0, 0, 0, 0);
+  const matchDay = new Date(mt); matchDay.setHours(0, 0, 0, 0);
   const days = Math.round((matchDay - today) / 86400000);
-  if (days > 1) return 'In ' + days + ' Tagen';
-  if (days === 1) return 'morgen';
-  const mt = matchDateTime(date, timeStr);
-  const diffMs = mt - new Date();
-  if (diffMs > 0) {
+  const diffMs = mt - Date.now();
+  let txt, unit = '', cls = 'nm-days';
+  if (days >= 1) {
+    txt = String(days); unit = days === 1 ? 'Tag' : 'Tage';
+  } else if (diffMs > 0) {
     const h = Math.floor(diffMs / 3600000);
     const m = Math.floor((diffMs % 3600000) / 60000);
-    const s = Math.floor((diffMs % 60000) / 1000);
-    return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    const sec = Math.floor((diffMs % 60000) / 1000);
+    txt = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+    cls = 'nm-days today';
+  } else if (diffMs > -dur) {
+    txt = 'läuft'; cls = 'nm-days today blink';
+  } else {
+    return true;
   }
-  const dur = /\b2er\b/i.test(label || '') ? 4 * 3600000 : 6 * 3600000;
-  if (diffMs > -dur) return 'läuft';
-  return '';
+  if (dEl.textContent !== txt) dEl.textContent = txt;
+  if (dEl.className !== cls)   dEl.className = cls;
+  if (uEl && uEl.textContent !== unit) uEl.textContent = unit;
+  return false;
 }
 
 function updateCountdowns() {
@@ -2366,53 +2691,9 @@ function updateCountdowns() {
     renderMatches();
     return;
   }
-  const nmDays = document.getElementById('nm-days');
-  if (nmDays && nmDays.dataset.nmMatchtime) {
-    const ms = +nmDays.dataset.nmMatchtime - Date.now();
-    if (ms > 0) {
-      const h = Math.floor(ms/3600000), m = Math.floor((ms%3600000)/60000), s = Math.floor((ms%60000)/1000);
-      nmDays.textContent = String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-    } else {
-      nmDays.textContent = 'läuft';
-      nmDays.classList.add('blink');
-      const dur = parseInt(nmDays.dataset.nmDuration || '21600000', 10);
-      nmDays.dataset.nmExpiry = (+nmDays.dataset.nmMatchtime + dur).toString();
-      delete nmDays.dataset.nmMatchtime;
-    }
-  }
-  if (nmDays && nmDays.dataset.nmExpiry && Date.now() >= +nmDays.dataset.nmExpiry) {
-    delete nmDays.dataset.nmExpiry;
-    delete nmDays.dataset.nmDuration;
-    renderNextMatch();
-    renderMatches();
-    return;
-  }
   let needsRerender = false;
-  document.querySelectorAll('.card-countdown[data-matchtime]').forEach(el => {
-    const mt = new Date(+el.dataset.matchtime);
-    const now = new Date();
-    const diffMs = mt - now;
-    const today = new Date(); today.setHours(0,0,0,0);
-    const matchDay = new Date(mt); matchDay.setHours(0,0,0,0);
-    const days = Math.round((matchDay - today) / 86400000);
-    const dur = parseInt(el.dataset.matchduration || '21600000', 10);
-    let txt = '', blink = false;
-    if (days > 1) {
-      txt = 'In ' + days + ' Tagen';
-    } else if (days === 1) {
-      txt = 'morgen';
-    } else if (diffMs > 0) {
-      const h = Math.floor(diffMs / 3600000);
-      const m = Math.floor((diffMs % 3600000) / 60000);
-      const s = Math.floor((diffMs % 60000) / 1000);
-      txt = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-    } else if (diffMs > -dur) {
-      txt = 'läuft'; blink = true;
-    } else if (el.classList.contains('blink')) {
-      needsRerender = true;
-    }
-    el.textContent = txt;
-    el.classList.toggle('blink', blink);
+  document.querySelectorAll('.nm-days[data-matchtime]').forEach(dEl => {
+    if (applyCountdown(dEl, dEl.parentElement.querySelector('.nm-unit'))) needsRerender = true;
   });
   if (needsRerender) {
     renderNextMatch();
@@ -2487,35 +2768,39 @@ function renderMatches() {
 
   container.innerHTML = visible.map((m, idx) => {
     const teamCls = m.team;
-    const tagCls  = 'tag-' + m.team;
     const past    = isMatchOver(m);
     const extra   = (m.isHome ? ' home-game' : '') + (past ? ' past-game' : '');
     const tabelleBtn = `<button class="btn-tabelle" onclick="event.stopPropagation();showTable('${m.team}')">Tabelle</button>`;
     const wd      = WEEKDAYS[m.date.getDay()];
+    const homeAway = m.isHome ? '<span class="nm-heim">Heimspiel</span>' : '<span>Auswärts</span>';
 
-    const homeSpan = `<span class="team${m.isHome ? '' : ' opponent'}">${esc(m.homeTeam)}</span>`;
-    const awaySpan = `<span class="team${m.isHome ? ' opponent' : ''}">${esc(m.awayTeam)}</span>`;
+    /* rechte Spalte: Tage/Countdown – bei vergangenen Spielen das Ergebnis */
+    const rightCol = past
+      ? `<div class="nm-right nm-result">${m.reportUrl
+          ? `<button class="result ${resultCls(m.result, m.isHome)}" onclick="showReport('${m.team}','${m.reportUrl}',allMatches.find(x=>x.reportUrl==='${m.reportUrl}'))">${resultTxt(m.result)}</button>`
+          : `<span class="result ${resultCls(m.result, m.isHome)}">${resultTxt(m.result)}</span>`}</div>`
+      : `<div class="nm-right"><div class="nm-days" data-matchtime="${matchDateTime(m.date, m.timeStr).getTime()}" data-matchduration="${matchDurationMs(m)}"></div><div class="nm-unit"></div></div>`;
 
     const divider = (showDivider && !past && (idx === 0 || isMatchOver(visible[idx - 1])))
       ? '<div class="past-divider"></div>'
       : '';
 
-    const resultEl = past
-      ? (m.reportUrl
-          ? `<button class="result ${resultCls(m.result, m.isHome)}" onclick="showReport('${m.team}','${m.reportUrl}',allMatches.find(x=>x.reportUrl==='${m.reportUrl}'))">${resultTxt(m.result)}</button>`
-          : `<span class="result ${resultCls(m.result, m.isHome)}">${resultTxt(m.result)}</span>`)
-      : '';
-
     return divider + `<div class="card ${teamCls}${extra}">
-  <div class="card-tag-row"><span class="tag ${tagCls}">${m.label}</span></div>
-  <div class="card-top">
-    <span class="card-date">${wd} ${m.dateStr}<span class="card-time"> · ${m.timeStr}</span></span>
-    ${past ? '' : `<span class="card-countdown" data-matchtime="${matchDateTime(m.date, m.timeStr).getTime()}" data-matchduration="${matchDurationMs(m)}">${countdownLabel(m.date, m.timeStr, m.label)}</span>`}
-    ${tabelleBtn}
+  <div class="nm-top-row">
+    <div class="nm-left-col">
+      <div class="nm-date">${wd} ${m.dateStr} · ${m.timeStr} Uhr · ${homeAway}</div>
+      <div class="nm-league btn-${m.team} on">${m.label}</div>
+    </div>
+    ${rightCol}
   </div>
-  <div class="card-match"><div class="card-match-teams">${homeSpan}<span class="vs">vs.</span>${awaySpan}</div>${resultEl}</div>
+  <div class="nm-teams">${matchTeamsHtml(m)}${tabelleBtn}</div>
+  ${m.note ? `<div class="card-note">${esc(m.note)}</div>` : ''}
 </div>`;
   }).join('\n');
+
+  container.querySelectorAll('.nm-days[data-matchtime]').forEach(dEl => {
+    applyCountdown(dEl, dEl.parentElement.querySelector('.nm-unit'));
+  });
 }
 
 /* ── Steuerung ─────────────────────────────────────────────── */
@@ -2562,10 +2847,8 @@ function toggleFavoriten() {
 
 function openFavoriten() {
   _favoritenOpen = true;
-  const closeBtn = document.getElementById('btn-favoriten-close');
   const card = document.getElementById('favoriten-card');
 
-  // Load saved favorites into team buttons
   const saved = loadMeineAuswahl();
   if (saved) {
     LEAGUES.forEach(l => {
@@ -2576,7 +2859,6 @@ function openFavoriten() {
     });
   }
   meineAuswahlActive = true;
-  closeBtn.innerHTML = 'Favoriten&shy;liste<br>schließen';
 
   document.getElementById('main-content').classList.add('favoriten-open');
   card.style.display = 'block';
@@ -2586,7 +2868,6 @@ function openFavoriten() {
 function closeFavoriten(immediate) {
   if (!_favoritenOpen) return;
   _favoritenOpen = false;
-  const closeBtn = document.getElementById('btn-favoriten-close');
   const card = document.getElementById('favoriten-card');
 
   const mc = document.getElementById('main-content');
@@ -2594,7 +2875,6 @@ function closeFavoriten(immediate) {
   mc.classList.remove('favoriten-open');
   requestAnimationFrame(() => { Array.from(mc.children).forEach(el => { el.style.transition = ''; }); });
 
-  // Save current team selection as favorites
   localStorage.setItem(LS_AUSWAHL, JSON.stringify({ ...showTeams }));
 
   card.classList.remove('open');
@@ -2603,9 +2883,7 @@ function closeFavoriten(immediate) {
   } else {
     card.style.display = 'none';
   }
-  closeBtn.innerHTML = 'Meine<br>Favoriten<br>auswählen';
 
-  // Activate "Meine Favoriten" right button
   selectMode = 'meine';
   meineAuswahlActive = true;
   document.getElementById('btn-meine-favoriten').classList.add('on');
@@ -2613,6 +2891,23 @@ function closeFavoriten(immediate) {
   saveState();
   renderNextMatch();
   renderMatches();
+}
+
+function clearFavoritenListe() {
+  localStorage.removeItem(LS_AUSWAHL);
+  LEAGUES.forEach(l => {
+    showTeams[l.team] = false;
+    const el = document.getElementById('btn-' + l.team);
+    if (el) el.classList.remove('on');
+  });
+}
+
+function selectAllFavoritenListe() {
+  LEAGUES.forEach(l => {
+    showTeams[l.team] = true;
+    const el = document.getElementById('btn-' + l.team);
+    if (el) el.classList.add('on');
+  });
 }
 
 async function refreshData() { clearHtmlCache(); localStorage.removeItem(LS_LEAGUES); await initLeagues(); await loadAllData(true); }
@@ -2660,12 +2955,20 @@ function scheduleAutoRefresh() {
   }
 }
 
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && getRunningMatches().length) {
+    clearTimeout(_autoRefreshTimer);
+    _autoRefreshTimer = null;
+    autoRefreshRunning();
+  }
+});
+
 /* ── Tabellen-Ansicht ──────────────────────────────────────── */
 function parseStandingsTable(html) {
   const doc = new DOMParser().parseFromString(html, 'text/html');
   for (const table of doc.querySelectorAll('table')) {
     const text = table.textContent;
-    if (text.includes('Rang') && (text.includes('Mannschaft') || text.includes('Verein'))) return table;
+    if (text.includes('Rang') && text.includes('Mannschaft')) return table;
   }
   return null;
 }
@@ -2699,39 +3002,34 @@ async function showTable(team) {
 
   const html = leagueHtml[team];
   const table = parseStandingsTable(html);
-  if (!table) {
-    document.getElementById('detail-table-container').innerHTML =
-      '<div class="status-msg">Tabelle noch nicht verfügbar.</div>';
-  }
+  if (!table) { alert('Tabelle noch nicht verfügbar.'); return; }
 
-  if (table) {
-    const rows = [...table.querySelectorAll('tr')];
-    let tableHtml = '<table class="standings-table"><thead>';
+  const rows = [...table.querySelectorAll('tr')];
+  let tableHtml = '<table class="standings-table"><thead>';
 
-    for (const row of rows) {
-      const isHeader = row.querySelectorAll('th').length > 0;
-      if (isHeader) {
-        const cells = [...row.querySelectorAll('th')];
-        tableHtml += '<tr>' + cells.map(c => `<th>${esc(c.textContent.trim())}</th>`).join('') + '</tr>';
-        tableHtml += '</thead><tbody>';
-      } else {
-        const cells = [...row.querySelectorAll('td')];
-        if (cells.length < 3) continue;
-        const rowText = row.textContent;
-        const isClub = rowText.includes(CLUB_NAME);
-        tableHtml += `<tr${isClub ? ' class="club-row"' : ''}>`;
-        tableHtml += cells.map(c => `<td>${esc(c.textContent.trim())}</td>`).join('');
-        tableHtml += '</tr>';
-      }
+  for (const row of rows) {
+    const isHeader = row.querySelectorAll('th').length > 0;
+    if (isHeader) {
+      const cells = [...row.querySelectorAll('th')];
+      tableHtml += '<tr>' + cells.map(c => `<th>${esc(c.textContent.trim())}</th>`).join('') + '</tr>';
+      tableHtml += '</thead><tbody>';
+    } else {
+      const cells = [...row.querySelectorAll('td')];
+      if (cells.length < 3) continue;
+      const rowText = row.textContent;
+      const isClub = rowText.includes(CLUB_NAME);
+      tableHtml += `<tr${isClub ? ' class="club-row"' : ''}>`;
+      tableHtml += cells.map(c => `<td>${esc(c.textContent.trim())}</td>`).join('');
+      tableHtml += '</tr>';
     }
-    tableHtml += '</tbody></table>';
-
-    document.getElementById('detail-title').innerHTML =
-      `<span class="detail-title-label">${esc(league.label)}</span>` +
-      `<span class="detail-title-sub">Tabelle · Spielplan</span>` +
-      `<span class="detail-title-suffix">Tabelle · Spielplan</span>`;
-    document.getElementById('detail-table-container').innerHTML = tableHtml;
   }
+  tableHtml += '</tbody></table>';
+
+  document.getElementById('detail-title').innerHTML =
+    `<span class="detail-title-label">${esc(league.label)}</span>` +
+    `<span class="detail-title-sub">Tabelle · Spielplan</span>` +
+    `<span class="detail-title-suffix">Tabelle · Spielplan</span>`;
+  document.getElementById('detail-table-container').innerHTML = tableHtml;
 
   // Alle Spiele der Gruppe (kompletter Gruppenspielplan)
   const allGroupMatches = parseLeagueAll(html, league);
@@ -2802,6 +3100,221 @@ function backFromInfo() {
   backToList();
 }
 
+/* Stichjahr der Altersklassen = Kalenderjahr, in dem das Alter zählt
+   (Winter 2026/27 und Sommer 2027 → 2027). Zur neuen Saison anpassen. */
+const ERW_STICHJAHR = 2027;
+/* ── Menüpunkt „Aktive Spieler": wer hier inaktiv ist, fehlt in der ganzen App
+   (Spielerstatistik, Altersklassen; Spielberichte bleiben vollständig).
+   Gespeichert auf dem Gerät, saisonübergreifend. Schlüssel = Name + Jahrgang. */
+const LS_INAKTIV = LS_PREFIX + 'inaktiv';
+let _inaktiv = new Set();
+try { _inaktiv = new Set(JSON.parse(localStorage.getItem(LS_INAKTIV) || '[]')); } catch(e) {}
+let _aktivQ = '', _aktivNurInaktiv = false, _aktivResetTimer = null;
+const _aktivSort = { key: 'name', dir: 1 };
+function _pk(p) { return _normName(p.name) + '|' + (p.year || ''); }
+function _isInaktiv(p) { return _inaktiv.has(_pk(p)); }
+function _inaktivNote(n) {
+  return n ? `<div class="inaktiv-note">${n} inaktive${n === 1 ? 'r' : ''} Spieler ausgeblendet – änderbar unter „Aktive Spieler“.</div>` : '';
+}
+function _saveInaktiv() {
+  try { localStorage.setItem(LS_INAKTIV, JSON.stringify([..._inaktiv])); } catch(e) {}
+}
+function _rerenderSpieler() {
+  renderAltersklassen();
+  const c = document.getElementById('statistik-container');
+  if (c && _statistikData) renderStatistikTable(c);
+}
+
+async function openAktiveSpieler() {
+  renderAktiveSpieler();
+  if (_statistikData) return;
+  try { await loadStatistik(); } catch(e) {}
+  const box = document.getElementById('aktiv-container');
+  if (!_statistikData) { if (box) box.innerHTML = '<div class="status-msg">Spielerdaten konnten nicht geladen werden.</div>'; return; }
+  renderAktiveSpieler();
+}
+function renderAktiveSpieler() {
+  const box = document.getElementById('aktiv-container');
+  if (!box) return;
+  if (!_statistikData) { box.innerHTML = '<div class="loading-row"><div class="spinner"></div>Spieler werden geladen …</div>'; return; }
+  // Gerüst nur einmal bauen, damit das Suchfeld beim Tippen den Fokus behält
+  if (!document.getElementById('aktiv-list')) box.innerHTML =
+      '<div class="aktiv-count" id="aktiv-count"></div>'
+    + `<input type="search" id="aktiv-search" class="aktiv-search" placeholder="Name suchen …" autocomplete="off" value="${esc(_aktivQ).replace(/"/g, '&quot;')}" oninput="_aktivQ = this.value; renderAktivList()">`
+    + '<div class="inaktiv-row"><button class="btn btn-filter" id="aktiv-nur" onclick="toggleNurInaktiv()">Nur inaktive</button>'
+    + '<button class="btn btn-filter" id="aktiv-reset" onclick="alleAktivieren()">Alle aktivieren</button></div>'
+    + '<div class="inaktiv-hint">Antippen schaltet zwischen aktiv und inaktiv um. Inaktive Spieler fehlen in der Spielerstatistik und bei den Altersklassen.</div>'
+    + '<div id="aktiv-list"></div>';
+  renderAktivList();
+}
+function _aktivCounts() {
+  const n = _statistikData.filter(_isInaktiv).length;
+  document.getElementById('aktiv-count').textContent = (_statistikData.length - n) + ' von ' + _statistikData.length + ' Spielern aktiv';
+  const reset = document.getElementById('aktiv-reset');
+  reset.disabled = !n;
+  if (!_aktivResetTimer) reset.textContent = 'Alle aktivieren';
+}
+function renderAktivList() {
+  const list = document.getElementById('aktiv-list');
+  if (!list || !_statistikData) return;
+  const q = _aktivQ.trim().toLowerCase();
+  const d = _aktivSort.dir;
+  const byName = (a, b) => a.name.localeCompare(b.name, 'de') || String(a.year).localeCompare(String(b.year));
+  const lkVal = p => parseFloat(p.lk) || 99; // ohne LK immer ganz unten
+  const yVal  = p => parseInt(p.year, 10) || 0;
+  const cmp = {
+    name: (a, b) => byName(a, b) * d,
+    lk:   (a, b) => ((lkVal(a) === 99) - (lkVal(b) === 99)) || (lkVal(a) - lkVal(b)) * d || byName(a, b),
+    year: (a, b) => ((!yVal(a)) - (!yVal(b))) || (yVal(a) - yVal(b)) * d || byName(a, b)
+  };
+  const rows = _statistikData
+    .filter(p => (!q || p.name.toLowerCase().includes(q)) && (!_aktivNurInaktiv || _isInaktiv(p)))
+    .sort(cmp[_aktivSort.key]);
+  document.getElementById('aktiv-nur').classList.toggle('on', _aktivNurInaktiv);
+  _aktivCounts();
+  if (!rows.length) { list.innerHTML = '<div class="status-msg">' + (_aktivNurInaktiv && !q ? 'Alle Spieler sind aktiv.' : 'Kein Spieler gefunden.') + '</div>'; return; }
+  let body = '', nr = 0;
+  for (const p of rows) {
+    const off = _isInaktiv(p);
+    const lk = p.lk && p.lk !== '–' ? _fmtLK(p.lk) : '–';
+    body += `<tr${off ? ' class="is-inaktiv"' : ''} data-pk="${esc(_pk(p)).replace(/"/g, '&quot;')}" onclick="toggleInaktiv(this)">`
+      + '<td class="ak-nr">' + (++nr) + '</td><td>' + esc(p.name) + '</td><td>' + esc(String(p.year || '–')) + '</td><td>' + esc(lk) + '</td>'
+      + '<td class="aktiv-state">' + (off ? 'inaktiv' : 'aktiv') + '</td></tr>';
+  }
+  const th = (key, text) => `<th class="ak-sort${_aktivSort.key === key ? ' on' : ''}" onclick="setAktivSort('${key}')">${text}${_aktivSort.key === key ? (d > 0 ? ' ▲' : ' ▼') : ''}</th>`;
+  list.innerHTML = '<table class="ak-table aktiv-table"><thead><tr><th class="ak-nr">Nr</th>' + th('name', 'Name') + th('year', 'Jahrg.') + th('lk', 'LK')
+    + '<th></th></tr></thead><tbody>' + body + '</tbody></table>';
+}
+function setAktivSort(key) {
+  if (_aktivSort.key === key) _aktivSort.dir = -_aktivSort.dir;
+  else { _aktivSort.key = key; _aktivSort.dir = 1; }
+  renderAktivList();
+}
+function toggleInaktiv(tr) {
+  const pk = tr.dataset.pk;
+  if (_inaktiv.has(pk)) _inaktiv.delete(pk); else _inaktiv.add(pk);
+  _saveInaktiv();
+  // Zeile an Ort und Stelle ändern — die Liste springt nicht, auch nicht unter „Nur inaktive"
+  const off = _inaktiv.has(pk);
+  tr.classList.toggle('is-inaktiv', off);
+  tr.querySelector('.aktiv-state').textContent = off ? 'inaktiv' : 'aktiv';
+  _aktivCounts();
+  _rerenderSpieler();
+}
+function toggleNurInaktiv() { _aktivNurInaktiv = !_aktivNurInaktiv; renderAktivList(); }
+/* Zweimal tippen statt Dialog: erster Tipp fragt nach, zweiter innerhalb von 3 s setzt zurück */
+function alleAktivieren() {
+  const btn = document.getElementById('aktiv-reset');
+  if (!_aktivResetTimer) {
+    btn.textContent = 'Wirklich alle?';
+    _aktivResetTimer = setTimeout(() => { _aktivResetTimer = null; if (document.getElementById('aktiv-reset')) _aktivCounts(); }, 3000);
+    return;
+  }
+  clearTimeout(_aktivResetTimer); _aktivResetTimer = null;
+  _inaktiv.clear(); _saveInaktiv();
+  renderAktivList(); _rerenderSpieler();
+}
+
+/* ── Menüpunkt „Altersklassen": frei kombinierbare Filter ──
+   Jeder Knopf = Jahrgangsblock der eigenen (originären) Altersklasse, Stichjahr wie oben. */
+const _akSelected = new Set();
+const _akSort = { key: 'lk', dir: 1 }; // Voreinstellung: beste (niedrigste) LK oben
+function setAkSort(key) {
+  if (_akSort.key === key) _akSort.dir = -_akSort.dir;
+  else { _akSort.key = key; _akSort.dir = 1; }
+  renderAltersklassen();
+}
+function _akClasses() {
+  const S = ERW_STICHJAHR, out = [];
+  for (const [g, jug, erw] of [['m', 'Junioren', 'Herren'], ['w', 'Juniorinnen', 'Damen']]) {
+    const E = g === 'm' ? 'H' : 'D';
+    out.push({ id: g + 'U12', g, cat: 'jugend', short: 'U12', abbr: 'U12', label: jug + ' U12', min: S - 11, max: S - 12 });
+    out.push({ id: g + 'U15', g, cat: 'jugend', short: 'U15', abbr: 'U15', label: jug + ' U15', min: S - 13, max: S - 15 });
+    out.push({ id: g + 'U18', g, cat: 'jugend', short: 'U18', abbr: 'U18', label: jug + ' U18', min: S - 16, max: S - 18 });
+    out.push({ id: g + '0',   g, cat: g === 'm' ? 'herren' : 'damen', short: erw, abbr: E, label: erw, min: S - 19, max: S - 29 });
+    for (const a of [30, 40, 50, 60])
+      out.push({ id: g + a, g, cat: g === 'm' ? 'herren' : 'damen', short: erw + ' ' + a, abbr: E + ' ' + a, label: erw + ' ' + a, min: S - a, max: a === 60 ? 0 : S - a - 9 });
+  }
+  // rank: Sortierung der AK-Spalte jung → alt, bei gleicher Stufe männlich vor weiblich
+  out.forEach((c, i) => c.rank = (i % 8) * 2 + (c.g === 'w' ? 1 : 0));
+  return out; // min = jüngster Jahrgang, max = ältester (0 = ohne Grenze)
+}
+
+function renderAltersklassen() {
+  const box = document.getElementById('ak-container');
+  if (!box) return;
+  const classes = _akClasses();
+  const yrs = c => c.max === 0 ? c.min + ' u. älter' : c.max + '–' + c.min;
+  const btn = c => `<button class="btn ak-btn ak-${c.cat}${_akSelected.has(c.id) ? ' on' : ''}" onclick="toggleAltersklasse('${c.id}')">${esc(c.short)}<small>${yrs(c)}</small></button>`;
+  const S = ERW_STICHJAHR;
+  let h = `<div class="ak-season">Winter ${S - 1}/${String(S).slice(2)} und Sommer ${S}<small>Stichjahr ${S}: maßgeblich ist das Alter, das man im Jahr ${S} erreicht.</small></div>`;
+  for (const [g, jug, erw] of [['m', 'Junioren', 'Herren'], ['w', 'Juniorinnen', 'Damen']]) {
+    const cs = classes.filter(c => c.g === g);
+    h += `<div class="ak-group-label">${jug} &amp; ${erw}</div><div class="ak-row">${cs.map(btn).join('')}</div>`;
+  }
+  // U8–U10: keine LK, nicht in den liga.nu-Listen → nur Jahrgänge, keine Knöpfe; nur bei gewählter U12
+  if (_akSelected.has('mU12') || _akSelected.has('wU12')) h += `<div class="ak-kids"><div class="ak-group-label">Kinder bis U10 · nur Sommer ${S}</div>`
+    + `<div class="ak-kids-row"><span><b>U8</b> ${S - 8}–${S - 6}</span><span><b>U9</b> ${S - 9}</span><span><b>U10</b> ${S - 10}</span></div>`
+    + `<small>Noch ohne LK, deshalb nicht in den liga.nu-Listen – keine Spielerliste möglich.</small></div>`;
+  if (!_akSelected.size) { box.innerHTML = h + '<div class="status-msg">Altersklassen antippen, um die Spieler zu sehen.</div>'; return; }
+  if (!_statistikData) { box.innerHTML = h + '<div class="loading-row"><div class="spinner"></div>Spieler werden geladen …</div>'; return; }
+
+  // Eine gemeinsame Liste; jeder Spieler einmal, mit seiner Altersklasse (erste passende)
+  const sel = classes.filter(c => _akSelected.has(c.id));
+  const rows = [];
+  let hidden = 0; // passende, aber inaktive Spieler (Menüpunkt „Aktive Spieler")
+  for (const p of _statistikData) {
+    const y = parseInt(p.year, 10);
+    if (!y) continue;
+    const c = sel.find(c => y <= c.min && (c.max === 0 || y >= c.max) && (!p.realGender || p.realGender === c.g));
+    if (c) { if (_isInaktiv(p)) hidden++; else rows.push({ p, c }); }
+  }
+
+  const lkVal = r => parseFloat(r.p.lk) || 99; // ohne LK immer ganz unten
+  const byName = (a, b) => a.p.name.localeCompare(b.p.name, 'de');
+  const d = _akSort.dir;
+  const cmp = {
+    name: (a, b) => byName(a, b) * d,
+    lk:   (a, b) => ((lkVal(a) === 99) - (lkVal(b) === 99)) || (lkVal(a) - lkVal(b)) * d || byName(a, b),
+    year: (a, b) => ((parseInt(a.p.year, 10) || 0) - (parseInt(b.p.year, 10) || 0)) * d || byName(a, b),
+    ak:   (a, b) => (a.c.rank - b.c.rank) * d || ((lkVal(a) === 99) - (lkVal(b) === 99)) || (lkVal(a) - lkVal(b)) || byName(a, b),
+    g:    (a, b) => ((a.c.g === 'w') - (b.c.g === 'w')) * d || ((lkVal(a) === 99) - (lkVal(b) === 99)) || (lkVal(a) - lkVal(b)) || byName(a, b)
+  };
+  // Spalte m/w nur, wenn die Auswahl beide Geschlechter enthält
+  const mixed = new Set(sel.map(c => c.g)).size > 1;
+  if (_akSort.key === 'g' && !mixed) { _akSort.key = 'lk'; _akSort.dir = 1; }
+  rows.sort(cmp[_akSort.key]);
+
+  const th = (key, text) => `<th class="ak-sort${_akSort.key === key ? ' on' : ''}" onclick="setAkSort('${key}')">${text}${_akSort.key === key ? (d > 0 ? ' ▲' : ' ▼') : ''}</th>`;
+  const head = '<thead><tr><th class="ak-nr">Nr</th>' + th('name', 'Name') + th('lk', 'LK') + th('year', 'Jahrg.') + th('ak', 'AK') + (mixed ? th('g', 'm/w') : '') + '</tr></thead>';
+  let body = '';
+  let nr = 0;
+  for (const { p, c } of rows) {
+    const lk = p.lk && p.lk !== '–' ? _fmtLK(p.lk) : '–';
+    body += '<tr><td class="ak-nr">' + (++nr) + '</td><td>' + _nameLink(p, esc(p.name)) + '</td><td>' + esc(lk) + '</td><td>' + esc(String(p.year))
+      + '</td><td class="ak-tag ak-' + c.cat + '">' + esc(c.abbr) + '</td>' + (mixed ? '<td>' + c.g + '</td>' : '') + '</tr>';
+  }
+  const title = sel.map(c => c.abbr + (mixed && c.cat === 'jugend' ? ' ' + c.g : '')).join(' + ');
+  box.innerHTML = h + '<div class="jahrgang-box ak-box"><div class="jahrgang-box-title">' + esc(title)
+    + ' <span class="ak-box-count">' + rows.length + ' Spieler</span></div>'
+    + (rows.length ? '<table class="ak-table">' + head + '<tbody>' + body + '</tbody></table>' : '<div class="status-msg">Keine Spieler.</div>')
+    + _inaktivNote(hidden) + '</div>';
+}
+
+async function toggleAltersklasse(id) {
+  if (_akSelected.has(id)) _akSelected.delete(id); else _akSelected.add(id);
+  renderAltersklassen();
+  if (_akSelected.size && !_statistikData) {
+    try { await loadStatistik(); } catch(e) {}
+    if (!_statistikData) {
+      const box = document.getElementById('ak-container');
+      box.querySelector('.loading-row')?.replaceWith(Object.assign(document.createElement('div'), { className: 'status-msg', textContent: 'Spielerdaten konnten nicht geladen werden.' }));
+      return;
+    }
+    renderAltersklassen();
+  }
+}
+
 async function showInfo(openAccordion) {
   if (document.getElementById('info-view').style.display === 'block') { backToList(); return; }
   document.getElementById('matches-container').style.display = 'none';
@@ -2857,7 +3370,8 @@ async function showReport(team, reportUrl, matchObj) {
     '<div class="loading-row"><div class="spinner"></div>Spielbericht wird geladen …</div>';
 
   try {
-    const html = await fetchURL(reportUrl);
+    const isFinal = !!(matchObj && /^\d+:\d+$/.test(matchObj.result || ''));
+    const html = await fetchReport(reportUrl, isFinal);
     document.getElementById('report-content').innerHTML = renderReport(html, matchObj);
     fitReportTeams();
   } catch(e) {
@@ -3132,6 +3646,53 @@ function applyMeineFavoriten() {
 })();
 document.getElementById('btn-favoriten-close').addEventListener('click', function() { closeFavoriten(true); });
 
+/* ── Vereinsauswahl ────────────────────────────────────────── */
+function setHeaderSub(extra) {
+  const sub = document.getElementById('header-sub');
+  if (!sub) return;
+  sub.innerHTML = '<button class="btn-club-switch" onclick="showClubPicker()">Verein wechseln ⇄</button>'
+    + (extra ? ' · ' + extra : '');
+}
+
+function showClubPicker() {
+  const list = document.getElementById('club-picker-list');
+  list.innerHTML = '';
+  CLUBS.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'club-pick' + (CLUB && CLUB.slug === c.slug ? ' on' : '');
+    b.innerHTML = '<span class="club-pick-name"></span><span class="club-pick-ort"></span>';
+    b.querySelector('.club-pick-name').textContent = c.name;
+    b.querySelector('.club-pick-ort').textContent = c.ort;
+    b.addEventListener('click', () => chooseClub(c.slug));
+    list.appendChild(b);
+  });
+  document.getElementById('club-picker-close').style.display = CLUB ? '' : 'none';
+  document.getElementById('club-picker').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeClubPicker() {
+  document.getElementById('club-picker').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+/* Verein wechseln lädt neu: alle Speicher-Schlüssel und Adressen hängen am Verein */
+function chooseClub(slug) {
+  if (CLUB && CLUB.slug === slug) { closeClubPicker(); return; }
+  localStorage.setItem(LS_CLUB, slug);
+  sessionStorage.clear();
+  location.replace(location.pathname);
+}
+
+(function initClubHeader() {
+  setHeaderSub('');
+  if (!CLUB) return;
+  const a = document.getElementById('club-link');
+  a.textContent = CLUB.name;
+  a.href = LIGA_BASE + 'clubInfoDisplay?club=' + CLUB.club;
+  document.title = CLUB.name + ' – Spielplan';
+})();
+
 /* ── Start ─────────────────────────────────────────────────── */
 function updateHeaderH() {
   const h = document.querySelector('.header');
@@ -3146,6 +3707,7 @@ updateHeaderH();
 document.fonts.ready.then(updateHeaderH);
 window.addEventListener('resize', updateHeaderH);
 (async function startup() {
+  if (!CLUB) { showClubPicker(); return; }
   await initLeagues();
   await loadAllData();
   setInterval(updateCountdowns, 1000);
@@ -3208,6 +3770,22 @@ if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 /* ── Statistik ─────────────────────────────────────────────── */
 let _statistikData = null;
 let _statistikSort = { col: 'gesamt', dir: -1 };
+let _statistikGenders = new Set(['m', 'w']);
+
+/* Vornamen-Geschlecht (Fallback, wenn weder LK-Liste noch Mannschaftsname das Geschlecht liefern) */
+const NAME_GENDER = {};
+'moritz paul niklas til jona jonas noah elias eliah elia felix henri henrik mats matti mattis luis louis johan johann johannes bastian thomas tom tim timo tobias simon sebastian florian fabian nico niko marvin marcel kevin dennis jannik jannis yannik yannick janosch malte lasse ole mika emil oskar oscar anton theo theodor karl carl ludwig friedrich ferdinand frederik fred linus levi levin hannes piet bjarne thore arne nils niels sven soenke joris hugo otto kilian valentin vincent constantin konstantin raphael gabriel samuel adrian alexander andreas christian markus martin michael peter klaus stefan stephan wolfgang juergen dieter benedikt joshua matteo aaron ben bennet bennett leon lukas lucas finn fynn jakob jacob jan jonathan david daniel philipp philip maximilian max pepe julian laurenz jannic leonhard tarje'
+  .split(/\s+/).forEach(n => NAME_GENDER[n] = 'm');
+'marlene anna anne lena lara lina mia mila emma ella hanna hannah clara klara nina marie marleen madlen malena leonie mariele linda illiana celina luna lisa cathrin katrin katharina wenke lea melina svea verena inga ina mareike sabrina linn anastasia sophia sofia sophie sofie johanna josephine charlotte frieda frida ida greta mathilda matilda maja maya paula pauline luisa louisa elisa amelie emilie emily isabel isabella laura julia juliana jana jasmin jessica vanessa michelle melanie nadine sandra claudia petra andrea birgit gabriele monika martina susanne sabine kerstin heike anja antje silke britta carina karina nele neele finja fiona romy ronja merle mara tessa helena helene magdalena theresa teresa victoria viktoria carlotta carla caroline pia selina lana nela'
+  .split(/\s+/).forEach(n => NAME_GENDER[n] = 'w');
+
+function _guessGenderByName(fullName) {
+  const after = (String(fullName).split(',')[1] || '').toLowerCase();
+  // Doppel-/Mehrfachnamen zerlegen (z. B. "Mia-Sophie", "Anna Lena") und ersten erkannten Teil nehmen
+  const parts = after.split(/[\s.-]+/).map(s => s.replace(/[^a-zäöüß]/g, '')).filter(Boolean);
+  for (const part of parts) if (NAME_GENDER[part]) return NAME_GENDER[part];
+  return '';
+}
 
 async function loadStatistik() {
   const container = document.getElementById('statistik-container');
@@ -3217,24 +3795,75 @@ async function loadStatistik() {
   container.innerHTML = '<div class="loading-row"><div class="spinner"></div>Daten werden geladen …</div>';
 
   try {
-    const reportMatches = allMatches.filter(m => m.reportUrl && /^\d+:\d+$/.test(m.result || ''));
-    const LK_BASE = 'https://wtv.liga.nu/cgi-bin/WebObjects/nuLigaTENDE.woa/wa/clubRankinglistLK?federation=WTV&club=2015325';
+    const LK_BASE = LIGA_BASE + 'clubRankinglistLK?federation=WTV&club=' + CLUB.lk;
 
-    const [lkHerren, lkDamen, ...reportResults] = await Promise.all([
+    // Vereinsseite holen → alle Mannschafts-Kader (teamPortrait); eingefrorene Saison: Schnappschuss
+    const archive  = archiveFor(SEASON_KEY);
+    const clubHtml = archive ? archive.clubHtml : await fetchURL(CLUB_TEAMS_URL).catch(() => '');
+    /* Nur die Kader der gewählten Saison — sonst stünden Spieler beider Runden in der Liste */
+    const rosters = parseClubRosters(clubHtml).filter(r => !SEASON_KEY || r.season === SEASON_KEY);
+
+    // Phase 1: LK-Listen + Kader laden. Bestimmt, WER in der Statistik steht — bewusst
+    // getrennt von den Spielberichten, damit die Spielerliste vollständig bleibt, auch
+    // wenn später einzelne Bericht-Abrufe fehlschlagen oder gedrosselt werden.
+    const rosterResults = await Promise.all([
       fetchURL(LK_BASE + '&gender=1').catch(() => ''),
       fetchURL(LK_BASE + '&gender=0').catch(() => ''),
-      ...reportMatches.map(m => fetchURL(m.reportUrl).catch(() => null))
+      ...rosters.map(r => fetchURL(r.url).catch(() => null))
     ]);
+    const lkHerren   = rosterResults[0];
+    const lkDamen    = rosterResults[1];
+    const rosterHtml = rosterResults.slice(2);
 
-    const playerMap = parseLKList(lkHerren);
-    Object.assign(playerMap, parseLKList(lkDamen));
+    // Aktueller LK + Geschlecht aus der LK-Vereinsübersicht (clubRankinglistLK): Name → {gender, lk}
+    const lkInfo = {};
+    const addLK = (html, g) => { const map = parseLKList(html, g); Object.keys(map).forEach(k => lkInfo[k] = { gender: g, lk: map[k].lk, name: map[k].name, year: map[k].year, profil: map[k].profil }); };
+    addLK(lkHerren, 'm');
+    addLK(lkDamen,  'w');
 
-    for (let i = 0; i < reportMatches.length; i++) {
-      if (reportResults[i]) parseReportStats(reportResults[i], reportMatches[i], playerMap);
+    // Spieler aus allen gemeldeten Kadern aufbauen (Name, Jahrgang, LK, Geschlecht – ohne Bilanz)
+    const playerMap = {};
+    for (let i = 0; i < rosters.length; i++) {
+      if (rosterHtml[i]) parseTeamRoster(rosterHtml[i], rosters[i].label, playerMap);
     }
 
-    _statistikData = Object.values(playerMap).filter(p =>
-      p.lk !== '–' || p.einzelWins + p.einzelLosses + p.doppelWins + p.doppelLosses > 0);
+    // Spieler aus der LK-Liste ergänzen, die in keiner Mannschaft gemeldet sind
+    // (z. B. Jugendliche ohne Team) — damit sie bei „Spielberechtigte Spieler" auftauchen
+    Object.keys(lkInfo).forEach(key => {
+      if (playerMap[key]) return;
+      const info = lkInfo[key];
+      playerMap[key] = { name: info.name, year: info.year, lk: info.lk, gender: '', realGender: '', teamGenders: new Set(), einzelWins: 0, einzelLosses: 0, doppelWins: 0, doppelLosses: 0 };
+    });
+
+    // Geschlecht festlegen: LK-Liste > eindeutige Mannschafts-Zuordnung (Junioren/Herren=m, Juniorinnen/Damen=w)
+    Object.values(playerMap).forEach(p => {
+      const key   = _normName(p.name);
+      const info  = lkInfo[key];
+      if (info && info.lk && info.lk !== '–') p.lk = info.lk; // aktuellen LK übernehmen (statt Melde-LK aus teamPortrait)
+      p.profil = (info && info.profil) || p.profil || ''; // tennis.de-Spielerprofil (LK-Liste, sonst Kader)
+      const teamG = p.teamGenders.size === 1 ? [...p.teamGenders][0] : '';
+      p.realGender = (info && info.gender) || teamG || _guessGenderByName(p.name) || '';
+      p.gender     = p.realGender; // Statistik-Filter (Herren/Damen); LK-lose nach Geschlecht einsortiert
+      delete p.teamGenders;
+    });
+
+    // Phase 2: Spielberichte laden und Bilanz zählen — jedes Match genau einmal, daher
+    // keine Doppelzählung bei Spielern in mehreren Mannschaften/Wettbewerben. Scheitert
+    // ein Abruf, fehlt nur dessen Bilanz — die Spielerliste (Phase 1) bleibt vollständig.
+    const reportMatches = allMatches.filter(m => m.reportUrl && /^\d+:\d+$/.test(m.result || ''));
+    const reportHtml = await Promise.all(reportMatches.map(m => fetchReport(m.reportUrl, true).catch(() => null)));
+    for (let i = 0; i < reportMatches.length; i++) {
+      if (reportHtml[i]) parseReportStats(reportHtml[i], reportMatches[i], playerMap);
+    }
+
+    _statistikData = Object.values(playerMap);
+
+    if (!_statistikData.length) {
+      /* liga.nu veröffentlicht die gemeldeten Spieler erst nach Abschluss der Meldephase */
+      container.innerHTML = '<div class="status-msg">Für diese Saison hat liga.nu noch keine Mannschaftsmeldungen veröffentlicht.</div>';
+      container.dataset.loaded = '';
+      return;
+    }
 
     renderStatistikTable(container);
   } catch(e) {
@@ -3243,7 +3872,60 @@ async function loadStatistik() {
   }
 }
 
-function parseLKList(html) {
+/* Liste aller Mannschafts-Kader (teamPortrait-Links) von der Vereinsseite */
+function parseClubRosters(html) {
+  const decoded = (html || '').replace(/&amp;/g, '&');
+  const re = /title="Mannschaftsportrait"\s+href="([^"]*teamPortrait[^"]*)">([^<]+)</g;
+  const out = [];
+  const seen = new Set();
+  let m;
+  while ((m = re.exec(decoded)) !== null) {
+    const url = m[1].startsWith('http') ? m[1] : 'https://wtv.liga.nu' + m[1];
+    if (seen.has(url)) continue;
+    seen.add(url);
+    const season = _decodeChampionship((m[1].match(/[?&]championship=([^&"]*)/) || ['',''])[1]);
+    out.push({ url, season, label: m[2].trim() });
+  }
+  return out;
+}
+
+/* Spieler-Tabelle einer teamPortrait-Seite parsen → playerMap füllen/ergänzen */
+function parseTeamRoster(html, label, playerMap) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const table = [...doc.querySelectorAll('table')].find(t => /Name,\s*Vorname/i.test(t.textContent));
+  if (!table) return;
+  const teamGender = /junioren\b|herren/i.test(label) ? 'm'
+                   : /juniorinnen|damen/i.test(label) ? 'w' : '';
+  [...table.rows].forEach(row => {
+    if (row.querySelectorAll('th').length) return;
+    const cells = [...row.cells];
+    if (cells.length < 6) return;
+    const nameCell = cells.find(c => /\(\d{4}\)/.test(c.textContent) && c.textContent.includes(','));
+    if (!nameCell) return;
+    const year = (nameCell.textContent.match(/\((\d{4})\)/) || [])[1] || '';
+    let name = ((nameCell.querySelector('a') || nameCell).textContent || '')
+      .replace(/\s*\(\d{4}\)[\s\S]*$/, '').replace(/\s+/g, ' ').trim();
+    if (!name.includes(',')) return;
+    const lkCell = cells.find(c => /^LK[\d.,]+$/.test(c.textContent.trim()));
+    const lk = lkCell ? lkCell.textContent.trim().replace(/^LK/, '').replace(',', '.') : '–';
+    const key = _normName(name);
+    let p = playerMap[key];
+    // Nur Stammdaten (Name, Jahrgang, LK, Geschlecht). Die Bilanz wird NICHT aus den
+    // teamPortrait-Spalten gelesen — dort steht eine je Altersklasse aggregierte
+    // Bilanz, die auf mehreren Mannschaftsseiten wiederholt wird (Doppelzählung).
+    // Siege/Niederlagen kommen aus den Spielberichten (parseReportStats).
+    if (!p) p = playerMap[key] = { name, year, lk: '–', gender: '', realGender: '', teamGenders: new Set(), einzelWins: 0, einzelLosses: 0, doppelWins: 0, doppelLosses: 0 };
+    if (year && !p.year) p.year = year;
+    if (lk !== '–') p.lk = lk;
+    // tennis.de-Profil auch aus dem Kader (für Spieler, die nicht in der LK-Liste des Vereins stehen)
+    const profA = nameCell.querySelector('a[href*="tennis.de/spielen/spielerprofil"]');
+    const prof  = ((profA && profA.getAttribute('href')) || '').match(/#id=([A-Za-z0-9]+)$/);
+    if (prof && !p.profil) p.profil = prof[1];
+    if (teamGender) p.teamGenders.add(teamGender);
+  });
+}
+
+function parseLKList(html, gender) {
   // Table columns: 0=DGR, 1=LK, 2=ID, 3=Name (Jahrgang), 4=Bemerkung, 5=Nation, 6=Stichtags LK
   const doc = new DOMParser().parseFromString(html, 'text/html');
   const map = {};
@@ -3259,7 +3941,10 @@ function parseLKList(html) {
     const name  = cellTxt.replace(/\s*\(\d{4}\)\s*$/, '').trim();
     const yearM = cellTxt.match(/\((\d{4})\)/);
     const year  = yearM ? yearM[1] : '';
-    if (name) map[_normName(name)] = { name, year, lk, einzelWins: 0, einzelLosses: 0, doppelWins: 0, doppelLosses: 0 };
+    // liga.nu verlinkt jedes Spielerprofil auf tennis.de (…/spielerprofil.html#id=WF12345) — nur die ID übernehmen
+    const profA  = cells[3].querySelector('a[href*="tennis.de/spielen/spielerprofil"]');
+    const profil = ((profA && profA.getAttribute('href')) || '').match(/#id=([A-Za-z0-9]+)$/);
+    if (name) map[_normName(name)] = { name, year, lk, gender, profil: profil ? profil[1] : '', einzelWins: 0, einzelLosses: 0, doppelWins: 0, doppelLosses: 0 };
   });
   return map;
 }
@@ -3337,11 +4022,15 @@ function _extractName(txt) {
   return name;
 }
 
-function _normName(n) { return n.toLowerCase().replace(/\s+/g, ' ').trim(); }
+function _normName(n) {
+  return n.toLowerCase()
+    .replace(/\b(dr|prof|dipl|ing|mag)\.?\s*/g, '')
+    .replace(/\s+/g, ' ').trim();
+}
 
 function _addStat(playerMap, name, type, won) {
   const key = _normName(name);
-  if (!playerMap[key]) playerMap[key] = { name, lk: '–', einzelWins: 0, einzelLosses: 0, doppelWins: 0, doppelLosses: 0 };
+  if (!playerMap[key]) playerMap[key] = { name, lk: '–', gender: 'x', einzelWins: 0, einzelLosses: 0, doppelWins: 0, doppelLosses: 0 };
   if (won) playerMap[key][type + 'Wins']++;
   else     playerMap[key][type + 'Losses']++;
 }
@@ -3360,6 +4049,11 @@ function _fmtStat(w, l) {
   return `${w}:${l} <span class="${cls}">(${d > 0 ? '+' : ''}${d})</span>`;
 }
 
+/* Name als Link zum Spielerprofil auf tennis.de (neuer Tab); ohne Profil-ID bleibt es reiner Text */
+function _nameLink(p, html) {
+  return p.profil ? `<a class="name-link" href="https://www.tennis.de/spielen/spielerprofil.html#id=${p.profil}" target="_blank" rel="noopener">${html}</a>` : html;
+}
+
 function _fmtLK(lk) {
   const n = parseFloat(lk);
   return isNaN(n) ? lk : n.toFixed(1).replace('.', ',');
@@ -3368,11 +4062,9 @@ function _fmtLK(lk) {
 function renderStatistikTable(container) {
   const col = _statistikSort.col;
   const dir = _statistikSort.dir;
-  const data = [..._statistikData].sort((a, b) => {
-    const aPlayed = a.einzelWins + a.einzelLosses + a.doppelWins + a.doppelLosses;
-    const bPlayed = b.einzelWins + b.einzelLosses + b.doppelWins + b.doppelLosses;
-    if (aPlayed === 0 && bPlayed > 0) return 1;
-    if (bPlayed === 0 && aPlayed > 0) return -1;
+  const byGender = _statistikData.filter(p => !p.gender || _statistikGenders.has(p.gender));
+  const hidden = byGender.filter(_isInaktiv).length; // Menüpunkt „Aktive Spieler"
+  const data = byGender.filter(p => !_isInaktiv(p)).sort((a, b) => {
     let cmp;
     if (col === 'name') {
       cmp = a.name.localeCompare(b.name, 'de');
@@ -3383,6 +4075,12 @@ function renderStatistikTable(container) {
       const ya = a.year || '9999', yb = b.year || '9999';
       cmp = ya.localeCompare(yb);
     } else {
+      const played = p => col === 'einzel' ? p.einzelWins + p.einzelLosses
+                        : col === 'doppel' ? p.doppelWins + p.doppelLosses
+                        : p.einzelWins + p.einzelLosses + p.doppelWins + p.doppelLosses;
+      const aPlayed = played(a), bPlayed = played(b);
+      if (aPlayed === 0 && bPlayed > 0) return 1;
+      if (bPlayed === 0 && aPlayed > 0) return -1;
       cmp = _statDiff(a, col) - _statDiff(b, col);
     }
     return cmp !== 0 ? cmp * dir : a.name.localeCompare(b.name, 'de');
@@ -3394,14 +4092,29 @@ function renderStatistikTable(container) {
     return `<th class="sortable${arrow}" onclick="sortStatistik('${id}')">${label}</th>`;
   };
 
-  let html = `<table class="stat-table"><thead><tr>
-    ${th('name','Name')}${th('jahrg','Jahrg.')}${th('lk','LK')}${th('gesamt','Gesamt')}${th('einzel','Einzel')}${th('doppel','Doppel')}
+  const genderBtn = (g, label) => `<button class="btn btn-filter${_statistikGenders.has(g) ? ' on' : ''}" onclick="toggleStatistikGender('${g}')">${label}</button>`;
+
+  let html = `<div class="stat-gender-row">${genderBtn('m', 'Herren')}${genderBtn('w', 'Damen')}</div>` + _inaktivNote(hidden);
+
+  if (!data.length) {
+    html += '<div class="status-msg">' + (_statistikGenders.size ? 'Keine Spieler in dieser Liste.' : 'Bitte Herren und/oder Damen auswählen.') + '</div>';
+    container.innerHTML = html;
+    return;
+  }
+
+  html += `<table class="stat-table"><thead><tr>
+    <th class="stat-nr">Nr</th>${th('name','Name')}${th('jahrg','Jahrg.')}${th('lk','LK')}${th('gesamt','Gesamt')}${th('einzel','Einzel')}${th('doppel','Doppel')}
   </tr></thead><tbody>`;
 
+  let nr = 0;
   for (const p of data) {
     const gw = p.einzelWins + p.doppelWins, gl = p.einzelLosses + p.doppelLosses;
+    const ci = p.name.indexOf(',');
+    const nameHtml = esc(ci >= 0 ? p.name.slice(0, ci) : p.name) + '<br><span style="font-size:0.72rem;opacity:0.75">' + esc(ci >= 0 ? p.name.slice(ci + 1).trim() : '') + '</span>';
+    const badge = '<span class="gender-badge gb-' + (p.realGender === 'm' ? 'm">m' : p.realGender === 'w' ? 'w">w' : 'x">?') + '</span>';
     html += `<tr>
-      <td>${(ci => esc(ci >= 0 ? p.name.slice(0, ci) : p.name) + '<br><span style="font-size:0.72rem;opacity:0.75">' + esc(ci >= 0 ? p.name.slice(ci + 1).trim() : '') + '</span>')(p.name.indexOf(','))}</td>
+      <td class="stat-nr">${++nr}</td>
+      <td><div class="stat-name-cell"><div class="stat-name">${_nameLink(p, nameHtml)}</div>${badge}</div></td>
       <td>${esc(p.year || '–')}</td>
       <td>${esc(_fmtLK(p.lk))}</td>
       <td>${_fmtStat(gw, gl)}</td>
@@ -3423,6 +4136,13 @@ function sortStatistik(col) {
   }
   _statistikSort.col = col;
   renderStatistikTable(container);
+}
+
+function toggleStatistikGender(g) {
+  if (_statistikGenders.has(g)) _statistikGenders.delete(g);
+  else _statistikGenders.add(g);
+  const container = document.getElementById('statistik-container');
+  if (container && _statistikData) renderStatistikTable(container);
 }
 
 /* ── Mannschaftsstatistik ───────────────────────────────────── */
@@ -3477,16 +4197,20 @@ function _mannschaftRank(t) {
 function renderMannschaftTable(container) {
   const col = _mannschaftSort.col;
   const dir = _mannschaftSort.dir;
+  // Kurzname (z. B. „Junioren U18-II") und Spielklasse (z. B. „Bezirksklasse") aus der Mannschaftsliste
+  const lg = t => LEAGUES.find(l => l.team === t.key);
+  const nameOf  = t => { const l = lg(t); return l ? teamShortName(l) : t.label; };
+  const klasseOf = t => { const l = lg(t); return (l && l.sublabel) || ''; };
   const data = [..._mannschaftData].sort((x, y) => {
     let cmp;
     if (col === 'name') {
-      cmp = x.label.localeCompare(y.label, 'de');
+      cmp = nameOf(x).localeCompare(nameOf(y), 'de');
     } else if (col === 'rang') {
       cmp = _mannschaftRank(x) - _mannschaftRank(y);
     } else {
       cmp = _mannschaftDiff(x, col) - _mannschaftDiff(y, col);
     }
-    return cmp !== 0 ? cmp * dir : x.label.localeCompare(y.label, 'de');
+    return cmp !== 0 ? cmp * dir : nameOf(x).localeCompare(nameOf(y), 'de');
   });
 
   const th = (id, label) => {
@@ -3496,13 +4220,14 @@ function renderMannschaftTable(container) {
   };
 
   let html = `<table class="stat-table"><thead><tr>
-    ${th('name','Mannschaft')}${th('gesamt','Gesamt')}${th('heim','Heim')}${th('auswaerts','Auswärts')}${th('rang','Rang')}
+    ${th('name','Mannschaft')}<th>Spielklasse</th>${th('gesamt','Gesamt')}${th('heim','Heim')}${th('auswaerts','Auswärts')}${th('rang','Rang')}
   </tr></thead><tbody>`;
   for (const t of data) {
     const rank = _mannschaftRank(t);
     const rankDisplay = rank === 999 ? '–' : String(rank);
     html += `<tr>
-      <td>${esc(t.label)}</td>
+      <td>${esc(nameOf(t))}</td>
+      <td class="stat-klasse">${esc(klasseOf(t))}</td>
       <td>${_fmtStat(t.gF, t.gA)}</td>
       <td>${_fmtStat(t.hF, t.hA)}</td>
       <td>${_fmtStat(t.aF, t.aA)}</td>

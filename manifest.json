@@ -1,7 +1,7 @@
 {
-  "name": "Spielplan 26",
-  "short_name": "Spielplan 26",
-  "description": "Spielplan des TV Feldmark Dorsten – Sommer 2026",
+  "name": "Spielplan",
+  "short_name": "Spielplan",
+  "description": "Spielplan für Tennisvereine im Münsterland",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f1117",
